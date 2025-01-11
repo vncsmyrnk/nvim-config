@@ -41,5 +41,23 @@ return {
     end,
   },
 
+  {
+    "ruifm/gitlinker.nvim",
+    keys = {
+      {
+        "<leader>gx",
+        "<cmd>lua require'gitlinker'.get_buf_range_url('n', {})<cr>",
+        mode = { "n" },
+        desc = "gitlinker: yank repo permanent link",
+      },
+      {
+        "<leader>gx",
+        "<cmd>lua require'gitlinker'.get_buf_range_url('v', {})<cr>",
+        mode = { "v" },
+        desc = "gitlinker: yank repo permanent link",
+      },
+    },
+  },
+
   { "rhysd/git-messenger.vim" },
 }
