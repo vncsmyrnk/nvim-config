@@ -150,6 +150,7 @@ return {
         { "<leader>r", group = "Rest" },
         { "<leader>s", group = "SQL" },
         { "<leader>t", group = "Tabs" },
+        { "<leader>x", group = "Trouble" },
 
         { "gK", desc = "LSP: Hover" },
         { "gd", desc = "LSP: Go to definition" },
