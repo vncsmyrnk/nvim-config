@@ -45,13 +45,13 @@ return {
     "ruifm/gitlinker.nvim",
     keys = {
       {
-        "<leader>gx",
+        "<leader>gy",
         "<cmd>lua require'gitlinker'.get_buf_range_url('n', {})<cr>",
         mode = { "n" },
         desc = "gitlinker: yank repo permanent link",
       },
       {
-        "<leader>gx",
+        "<leader>gy",
         "<cmd>lua require'gitlinker'.get_buf_range_url('v', {})<cr>",
         mode = { "v" },
         desc = "gitlinker: yank repo permanent link",
