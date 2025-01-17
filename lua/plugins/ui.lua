@@ -231,6 +231,10 @@ return {
         return last_search .. " (" .. searchcount.current .. "/" .. searchcount.total .. ")"
       end
 
+      local function line_count()
+        return tostring(vim.fn.line("$")) .. "L"
+      end
+
       require("lualine").setup({
         options = {
           theme = theme,
@@ -259,6 +263,7 @@ return {
           lualine_y = {
             search_result,
             "progress",
+            line_count,
             "filesize",
             "filetype",
           },
