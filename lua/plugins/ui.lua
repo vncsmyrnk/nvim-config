@@ -17,12 +17,16 @@ return {
     },
     config = function()
       local telescope = require("telescope")
+      local actions = require("telescope.actions")
+      local lga_actions = require("telescope-live-grep-args.actions")
       telescope.setup({
         defaults = {
           mappings = {
             i = {
               ["<C-Down>"] = require("telescope.actions").cycle_history_next,
               ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
+              ["<C-k>"] = lga_actions.quote_prompt(),
+              ["<C-space>"] = actions.to_fuzzy_refine,
             },
           },
         },
