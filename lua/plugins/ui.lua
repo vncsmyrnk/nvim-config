@@ -45,6 +45,40 @@ return {
         desc = "Telescope: Fuzzy finder",
       },
       {
+        "<leader>fp",
+        function()
+          local pickers = require("telescope.pickers")
+          local finders = require("telescope.finders")
+          local actions = require("telescope.actions")
+          local action_state = require("telescope.actions.state")
+          local conf = require("telescope.config").values
+          local home_path = os.getenv("HOME")
+
+          local opts = {}
+
+          pickers
+            .new(opts, {
+              prompt_title = "Change working directory",
+              __locations_input = true,
+              finder = finders.new_oneshot_job(
+                { "fd", "--base-directory", home_path, "--max-depth", 5, "-t", "d" },
+                opts
+              ),
+              sorter = conf.file_sorter(opts),
+              attach_mappings = function()
+                actions.select_default:replace(function(prompt_bufnr)
+                  local selection = action_state.get_selected_entry()
+                  actions.close(prompt_bufnr)
+                  vim.cmd("cd " .. home_path .. package.config:sub(1, 1) .. selection.value)
+                end)
+                return true
+              end,
+            })
+            :find()
+        end,
+        desc = "Telescope: Project Fuzzy finder",
+      },
+      {
         "<leader>fa",
         function()
           require("telescope").extensions.live_grep_args.live_grep_args()
@@ -90,6 +124,21 @@ return {
         "<leader>fs",
         "<cmd>Telescope search_history<cr>",
         desc = "Telescope: Search history",
+      },
+      {
+        "<leader>fk",
+        "<cmd>Telescope keymaps<cr>",
+        desc = "Telescope: Search keymaps",
+      },
+      {
+        "<leader>fh",
+        "<cmd>Telescope help_tags<cr>",
+        desc = "Telescope: Search help tags",
+      },
+      {
+        "<leader>fo",
+        "<cmd>Telescope vim_options<cr>",
+        desc = "Telescope: Search vim options",
       },
       {
         "<leader>fl",
