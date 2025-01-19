@@ -33,17 +33,12 @@ return {
     keys = {
       {
         "<leader>ff",
-        "<cmd>Telescope find_files<cr>",
-        desc = "Telescope: Fuzzy finder",
-      },
-      {
-        "<leader>fF",
         function()
           require("telescope.builtin").find_files({
             find_command = { "fd", "--hidden", "--type", "f", "-E", ".git", "--no-ignore" },
           })
         end,
-        desc = "Telescope: Fuzzy finder (hidden files)",
+        desc = "Telescope: Fuzzy finder",
       },
       {
         "<leader>fa",
