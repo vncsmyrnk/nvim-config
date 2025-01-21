@@ -1,3 +1,9 @@
+local custom_find_files = function()
+  require("telescope.builtin").find_files({
+    find_command = { "fd", "--hidden", "--type", "f", "-E", ".git", "--no-ignore" },
+  })
+end
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -21,6 +27,24 @@ return {
             },
           },
         },
+        pickers = {
+          find_files = {
+            mappings = {
+              i = {
+                ["<C-d>"] = function()
+                  local selection = require("telescope.actions.state").get_selected_entry()
+                  local dir = vim.fn.fnamemodify(selection.path, ":p:h")
+                  vim.cmd(string.format("silent tcd %s", dir))
+                  custom_find_files()
+                end,
+                ["<C-u>"] = function()
+                  vim.cmd([[ silent tcd ]])
+                  custom_find_files()
+                end,
+              },
+            },
+          },
+        },
       })
       telescope.load_extension("live_grep_args")
       require("telescope").load_extension("rest")
@@ -28,11 +52,7 @@ return {
     keys = {
       {
         "<leader>ff",
-        function()
-          require("telescope.builtin").find_files({
-            find_command = { "fd", "--hidden", "--type", "f", "-E", ".git", "--no-ignore" },
-          })
-        end,
+        custom_find_files,
         desc = "Telescope: Fuzzy finder",
       },
       {
