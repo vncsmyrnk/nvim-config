@@ -1,9 +1,8 @@
-local custom_find_files = function(title, path_after_home, opts)
+local custom_find_files = function(title, paths_string, opts)
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
   local conf = require("telescope.config").values
-  local find_path = string.format("%s/%s", os.getenv("HOME"), path_after_home)
-  local find_commnd = { "fd", ".", find_path, "--unrestricted", "--type", "f" }
+  local find_commnd = { "fd", ".", paths_string, "--unrestricted", "--type", "f" }
 
   pickers
     .new(opts, {
@@ -63,16 +62,18 @@ return {
         desc = "Telescope: Fuzzy finder",
       },
       {
-        "<leader>fpi",
+        "<leader>fc",
         function()
-          custom_find_files("Find issues", "issues", {})
+          local paths = os.getenv("UTIL_CUSTOM_DOCS_DIR") or string.format("%s/%s", os.getenv("HOME"), "Documents")
+          custom_find_files("Find issues", paths, {})
         end,
-        desc = "Telescope: Find files in ~/issues",
+        desc = "Telescope: Find custom documents",
       },
       {
-        "<leader>fpd",
+        "<leader>fp",
         function()
-          custom_find_files("Find documents", "Documents", {})
+          local paths = os.getenv("UTIL_PROJECTS_DIR") or string.format("%s/%s", os.getenv("HOME"), "workspace")
+          custom_find_files("Find projects", paths, {})
         end,
         desc = "Telescope: Find files in ~/Documents",
       },
@@ -92,14 +93,6 @@ return {
           })
         end,
         desc = "Telescope: Buffers",
-      },
-      {
-        "<leader>fc",
-        function()
-          local input = vim.fn.input("Custom location: ")
-          require("telescope.builtin").find_files({ cwd = input })
-        end,
-        desc = "Telescope: Custom path find files",
       },
       {
         "<leader>fd",

@@ -20,7 +20,6 @@ return {
         { "<leader>f", group = "File find" },
         { "<leader>fg", group = "File find (Git)" },
         { "<leader>fe", group = "File find (environment)" },
-        { "<leader>fp", group = "File find (custom directories)" },
         { "<leader>e", group = "File explorer" },
         { "<leader>g", group = "Git" },
         { "<leader>i", group = "Insert snippets" },
