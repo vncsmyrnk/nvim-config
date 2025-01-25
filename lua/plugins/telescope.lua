@@ -1,7 +1,19 @@
-local custom_find_files = function()
-  require("telescope.builtin").find_files({
-    find_command = { "fd", "--hidden", "--type", "f", "-E", ".git", "--no-ignore" },
-  })
+local custom_find_files = function(title, path_after_home, opts)
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local conf = require("telescope.config").values
+  local find_path = string.format("%s/%s", os.getenv("HOME"), path_after_home)
+  local find_commnd = { "fd", ".", find_path, "--unrestricted", "--type", "f" }
+
+  pickers
+    .new(opts, {
+      prompt_title = title,
+      __locations_input = true,
+      finder = finders.new_oneshot_job(find_commnd, opts),
+      previewer = conf.grep_previewer(opts),
+      sorter = conf.file_sorter(opts),
+    })
+    :find()
 end
 
 return {
@@ -27,24 +39,6 @@ return {
             },
           },
         },
-        pickers = {
-          find_files = {
-            mappings = {
-              i = {
-                ["<C-d>"] = function()
-                  local selection = require("telescope.actions.state").get_selected_entry()
-                  local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-                  vim.cmd(string.format("silent tcd %s", dir))
-                  custom_find_files()
-                end,
-                ["<C-u>"] = function()
-                  vim.cmd([[ silent tcd ]])
-                  custom_find_files()
-                end,
-              },
-            },
-          },
-        },
       })
       telescope.load_extension("live_grep_args")
       require("telescope").load_extension("rest")
@@ -52,42 +46,26 @@ return {
     keys = {
       {
         "<leader>ff",
-        custom_find_files,
+        function()
+          require("telescope.builtin").find_files({
+            find_command = { "fd", "--unrestricted", "--type", "f", "-E", ".git" },
+          })
+        end,
         desc = "Telescope: Fuzzy finder",
       },
       {
-        "<leader>fp",
+        "<leader>fpi",
         function()
-          local pickers = require("telescope.pickers")
-          local finders = require("telescope.finders")
-          local actions = require("telescope.actions")
-          local action_state = require("telescope.actions.state")
-          local conf = require("telescope.config").values
-          local home_path = os.getenv("HOME")
-
-          local opts = {}
-
-          pickers
-            .new(opts, {
-              prompt_title = "Change working directory",
-              __locations_input = true,
-              finder = finders.new_oneshot_job(
-                { "fd", "--base-directory", home_path, "--max-depth", 5, "-t", "d" },
-                opts
-              ),
-              sorter = conf.file_sorter(opts),
-              attach_mappings = function()
-                actions.select_default:replace(function(prompt_bufnr)
-                  local selection = action_state.get_selected_entry()
-                  actions.close(prompt_bufnr)
-                  vim.cmd("cd " .. home_path .. package.config:sub(1, 1) .. selection.value)
-                end)
-                return true
-              end,
-            })
-            :find()
+          custom_find_files("Find issues", "issues", {})
         end,
-        desc = "Telescope: Project Fuzzy finder",
+        desc = "Telescope: Find files in ~/issues",
+      },
+      {
+        "<leader>fpd",
+        function()
+          custom_find_files("Find documents", "Documents", {})
+        end,
+        desc = "Telescope: Find files in ~/Documents",
       },
       {
         "<leader>fa",
