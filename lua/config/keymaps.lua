@@ -3,13 +3,13 @@ vim.g.maplocalleader = "\\"
 
 -- Buffer
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy text" })
-vim.keymap.set("n", "<leader><tab>", "<cmd>b#<CR>", { desc = "Last buffer" })
+vim.keymap.set("n", "<leader><tab>", "<cmd>b#<cr>", { desc = "Last buffer" })
 vim.keymap.set("n", "<leader>w", vim.cmd.w, { desc = "Save file" })
-vim.keymap.set("n", "<leader>h", "<cmd>noh<CR>", { desc = "Clear highlight" })
-vim.keymap.set("n", "<leader>qq", "<cmd>q<CR>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>qp", "<cmd>b#|bd#<CR>", { desc = "Close current buffer and go to previous" })
-vim.keymap.set("n", "<leader>qa", "<cmd>qa<CR>", { desc = "Close session" })
-vim.keymap.set("n", "<leader>qA", "<cmd>qa!<CR>", { desc = "Close session without saving" })
+vim.keymap.set("n", "<leader>h", "<cmd>noh<cr>", { desc = "Clear highlight" })
+vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>qp", "<cmd>b#|bd#<cr>", { desc = "Close current buffer and go to previous" })
+vim.keymap.set("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Close session" })
+vim.keymap.set("n", "<leader>qA", "<cmd>qa!<cr>", { desc = "Close session without saving" })
 
 -- Copy file name
 vim.keymap.set("n", "<leader>eyp", '<cmd>let @+ = expand("%:p")<cr>', { desc = "Copy current buffer absolute path" })
@@ -29,29 +29,29 @@ vim.keymap.set("t", "<A-k>", [[<C-\><C-N><C-w>k]], { desc = "Go to window above"
 vim.keymap.set("t", "<A-l>", [[<C-\><C-N><C-w>l]], { desc = "Go to window on the right" })
 vim.keymap.set("t", "<A-t>", [[<C-\><C-N><C-w>t]], { desc = "Go to window on the top left" })
 vim.keymap.set("t", "<A-b>", [[<C-\><C-N><C-w>b]], { desc = "Go to window on the right bottom" })
-vim.keymap.set("n", "<A-h>", [[<C-w>h]], { desc = "Go to window on the left" })
-vim.keymap.set("n", "<A-j>", [[<C-w>j]], { desc = "Go to window below" })
-vim.keymap.set("n", "<A-k>", [[<C-w>k]], { desc = "Go to window above" })
-vim.keymap.set("n", "<A-l>", [[<C-w>l]], { desc = "Go to window on the right" })
-vim.keymap.set("n", "<A-t>", [[<C-w>t]], { desc = "Go to window on the top left" })
-vim.keymap.set("n", "<A-b>", [[<C-w>b]], { desc = "Go to window on the right bottom" })
-vim.keymap.set("n", "<A-o>", [[<C-w>o]], { desc = "Makes the current window the only one visible" })
-vim.keymap.set("n", "<A-q>", [[<C-w>q]], { desc = "Closes current window" })
+vim.keymap.set("n", "<A-h>", "<C-w>h", { desc = "Go to window on the left" })
+vim.keymap.set("n", "<A-j>", "<C-w>j", { desc = "Go to window below" })
+vim.keymap.set("n", "<A-k>", "<C-w>k", { desc = "Go to window above" })
+vim.keymap.set("n", "<A-l>", "<C-w>l", { desc = "Go to window on the right" })
+vim.keymap.set("n", "<A-t>", "<C-w>t", { desc = "Go to window on the top left" })
+vim.keymap.set("n", "<A-b>", "<C-w>b", { desc = "Go to window on the right bottom" })
+vim.keymap.set("n", "<A-o>", "<C-w>o", { desc = "Makes the current window the only one visible" })
+vim.keymap.set("n", "<A-q>", "<C-w>q", { desc = "Closes current window" })
 
 -- Splitting terminal windows
-vim.keymap.set("n", "<A-v>", [[<cmd>vert term<CR>]], { desc = "Open split terminal on the left" })
-vim.keymap.set("n", "<A-r>", [[<cmd>rightb term<CR>]], { desc = "Open split terminal on the bottom right" })
-vim.keymap.set("n", "<A-a>", [[<cmd>lefta term<CR>]], { desc = "Open split terminal on the top left" })
+vim.keymap.set("n", "<A-v>", [[<cmd>vert term<cr>]], { desc = "Open split terminal on the left" })
+vim.keymap.set("n", "<A-r>", [[<cmd>rightb term<cr>]], { desc = "Open split terminal on the bottom right" })
+vim.keymap.set("n", "<A-a>", [[<cmd>lefta term<cr>]], { desc = "Open split terminal on the top left" })
 
 -- Terminal mode
 vim.keymap.set("t", "<A-d>", [[<C-\><C-N>]], { desc = "Exit terminal mode" })
 
 -- Tabs
-vim.keymap.set("n", "<leader>tn", [[<cmd>tabnew<CR>]], { desc = "Opens a new tab" })
-vim.keymap.set("n", "<leader>tt", [[<cmd>tab term<CR>]], { desc = "Opens a new tab in terminal mode" })
-vim.keymap.set("n", "<leader>th", [[<cmd>tabmove -1<CR>]], { desc = "Moves tab to the right" })
-vim.keymap.set("n", "<leader>tl", [[<cmd>tabmove +1<CR>]], { desc = "Moves tab to the left" })
-vim.keymap.set("n", "<leader>tq", [[<cmd>tabclose<CR>]], { desc = "Closes current tab" })
+vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "Opens a new tab" })
+vim.keymap.set("n", "<leader>tt", "<cmd>tab term<cr>", { desc = "Opens a new tab in terminal mode" })
+vim.keymap.set("n", "<leader>th", "<cmd>tabmove -1<cr>", { desc = "Moves tab to the right" })
+vim.keymap.set("n", "<leader>tl", "<cmd>tabmove +1<cr>", { desc = "Moves tab to the left" })
+vim.keymap.set("n", "<leader>tq", "<cmd>tabclose<cr>", { desc = "Closes current tab" })
 
 -- Lazy
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
