@@ -95,7 +95,7 @@ return {
         function()
           local paths = os.getenv("UTILS_CUSTOM_DOCS_DIR") or string.format("%s/%s", os.getenv("HOME"), "Documents")
           local paths_list = vim.split(paths, " ")
-          custom_find_files("Find issues", paths_list, {})
+          custom_find_files("Find documents", paths_list, {})
         end,
         desc = "Telescope: Find custom documents",
       },
