@@ -267,7 +267,7 @@ return {
           shortcut = {
             { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
             {
-              desc = " dotfiles",
+              desc = " Config files",
               group = "Number",
               action = "Telescope find_files follow=true cwd=$HOME/.config/nvim",
               key = "d",
