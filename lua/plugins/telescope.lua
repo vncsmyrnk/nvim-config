@@ -71,7 +71,7 @@ return {
           buffers = {
             mappings = {
               i = {
-                ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
+                ["<M-d>"] = actions.delete_buffer + actions.move_to_top,
               },
             },
           },
