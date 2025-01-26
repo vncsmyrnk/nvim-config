@@ -1,14 +1,15 @@
-local custom_find_files = function(title, paths_string, opts)
+local custom_find_files = function(title, paths_list, opts)
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
   local conf = require("telescope.config").values
-  local find_commnd = { "fd", ".", paths_string, "--unrestricted", "--type", "f" }
+  local find_command = { "fd", ".", "--unrestricted", "--type", "f" }
+  vim.list_extend(find_command, paths_list)
 
   pickers
     .new(opts, {
       prompt_title = title,
       __locations_input = true,
-      finder = finders.new_oneshot_job(find_commnd, opts),
+      finder = finders.new_oneshot_job(find_command, opts),
       previewer = conf.grep_previewer(opts),
       sorter = conf.file_sorter(opts),
     })
@@ -64,8 +65,9 @@ return {
       {
         "<leader>fc",
         function()
-          local paths = os.getenv("UTIL_CUSTOM_DOCS_DIR") or string.format("%s/%s", os.getenv("HOME"), "Documents")
-          custom_find_files("Find issues", paths, {})
+          local paths = os.getenv("UTILS_CUSTOM_DOCS_DIR") or string.format("%s/%s", os.getenv("HOME"), "Documents")
+          local paths_list = vim.split(paths, " ")
+          custom_find_files("Find issues", paths_list, {})
         end,
         desc = "Telescope: Find custom documents",
       },
