@@ -8,6 +8,7 @@ vim.keymap.set("n", "<leader>w", vim.cmd.w, { desc = "Save file" })
 vim.keymap.set("n", "<leader>h", "<cmd>noh<cr>", { desc = "Clear highlight" })
 vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>qp", "<cmd>b#|bd#<cr>", { desc = "Close current buffer and go to previous" })
+vim.keymap.set("n", "<leader>qb", "<cmd>%bd|e#<cr>", { desc = "Close all buffers but the current one" })
 vim.keymap.set("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Close session" })
 vim.keymap.set("n", "<leader>qA", "<cmd>qa!<cr>", { desc = "Close session without saving" })
 
