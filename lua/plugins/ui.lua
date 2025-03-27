@@ -252,6 +252,20 @@ return {
         end,
         desc = "Dismiss All",
       },
+      {
+        "<leader>nD",
+        function()
+          require("noice").cmd("disable")
+        end,
+        desc = "Disables noice",
+      },
+      {
+        "<leader>nE",
+        function()
+          require("noice").cmd("enable")
+        end,
+        desc = "Enables noice",
+      },
     },
   },
 
