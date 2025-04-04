@@ -126,21 +126,9 @@ return {
         desc = "Telescope: Buffers",
       },
       {
-        "<leader>fd",
-        function()
-          require("telescope.builtin").diagnostics({ bufnr = 0 })
-        end,
-        desc = "Telescope: LSP diagnostics",
-      },
-      {
         "<leader>fm",
         "<cmd>Telescope man_pages<cr>",
         desc = "Telescope: man pages",
-      },
-      {
-        "<leader>fr",
-        "<cmd>Telescope lsp_references<cr>",
-        desc = "Telescope: LSP references",
       },
       {
         "<leader>fs",
@@ -166,6 +154,58 @@ return {
         "<leader>fl",
         "<cmd>Telescope resume<cr>",
         desc = "Telescope: Open last search",
+      },
+      {
+        "<leader>fsr",
+        "<cmd>Telescope lsp_references<cr>",
+        desc = "Telescope: LSP references",
+      },
+      {
+        "<leader>fsi",
+        "<cmd>Telescope lsp_incoming_calls<cr>",
+        desc = "Telescope: LSP incoming calls",
+      },
+      {
+        "<leader>fso",
+        "<cmd>Telescope lsp_outgoing_calls<cr>",
+        desc = "Telescope: LSP outgoing calls",
+      },
+      {
+        "<leader>fsd",
+        "<cmd>Telescope lsp_document_symbols<cr>",
+        desc = "Telescope: LSP document symbols",
+      },
+      {
+        "<leader>fsw",
+        "<cmd>Telescope lsp_workspace_symbols<cr>",
+        desc = "Telescope: LSP workspace symbols",
+      },
+      {
+        "<leader>fsD",
+        "<cmd>Telescope diagnostics<cr>",
+        desc = "Telescope: LSP diagnostics (project)",
+      },
+      {
+        "<leader>fsd",
+        function()
+          require("telescope.builtin").diagnostics({ bufnr = 0 })
+        end,
+        desc = "Telescope: LSP diagnostics",
+      },
+      {
+        "<leader>fsi",
+        "<cmd>Telescope lsp_implementations<cr>",
+        desc = "Telescope: LSP implementations",
+      },
+      {
+        "<leader>fsf",
+        "<cmd>Telescope lsp_definitions<cr>",
+        desc = "Telescope: LSP definitions",
+      },
+      {
+        "<leader>fst",
+        "<cmd>Telescope lsp_type_definitions<cr>",
+        desc = "Telescope: LSP type definitions",
       },
       {
         "<leader>fq",
