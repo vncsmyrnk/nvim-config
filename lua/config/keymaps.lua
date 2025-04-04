@@ -54,6 +54,12 @@ vim.keymap.set("n", "<leader>th", "<cmd>tabmove -1<cr>", { desc = "Moves tab to 
 vim.keymap.set("n", "<leader>tl", "<cmd>tabmove +1<cr>", { desc = "Moves tab to the left" })
 vim.keymap.set("n", "<leader>tq", "<cmd>tabclose<cr>", { desc = "Closes current tab" })
 
+-- Quickfix list
+vim.keymap.set("n", "<leader>kn", "<cmd>cnext<cr>", { desc = "Quickfix: next item" })
+vim.keymap.set("n", "<leader>kp", "<cmd>cprev<cr>", { desc = "Quickfix: previous item" })
+vim.keymap.set("n", "<leader>kN", "<cmd>cnewer<cr>", { desc = "Quickfix: next list" })
+vim.keymap.set("n", "<leader>kP", "<cmd>colder<cr>", { desc = "Quickfix: previous list" })
+
 -- Lazy
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 

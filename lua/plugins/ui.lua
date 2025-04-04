@@ -24,6 +24,7 @@ return {
         { "<leader>g", group = "Git" },
         { "<leader>i", group = "Insert snippets" },
         { "<leader>ip", group = "Insert snippets (PHP)" },
+        { "<leader>k", group = "Quickfix list" },
         { "<leader>m", group = "Markdown" },
         { "<leader>n", group = "Noice (notify)" },
         { "<leader>o", group = "Oil" },

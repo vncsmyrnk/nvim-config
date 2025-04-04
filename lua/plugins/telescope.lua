@@ -168,6 +168,11 @@ return {
         desc = "Telescope: Open last search",
       },
       {
+        "<leader>fq",
+        "<cmd>Telescope quickfixhistory<cr>",
+        desc = "Telescope: Quickfix list history",
+      },
+      {
         "<leader>fgc",
         "<cmd>Telescope git_commits<cr>",
         desc = "Telescope: Git commits",
