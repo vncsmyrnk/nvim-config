@@ -51,6 +51,7 @@ return {
     branch = "0.1.x",
     dependencies = {
       { "nvim-telescope/telescope-live-grep-args.nvim", version = "^1.0.0" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
       local telescope = require("telescope")
@@ -60,8 +61,8 @@ return {
         defaults = {
           mappings = {
             i = {
-              ["<C-Down>"] = require("telescope.actions").cycle_history_next,
-              ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
+              ["<C-Down>"] = actions.cycle_history_next,
+              ["<C-Up>"] = actions.cycle_history_prev,
               ["<C-k>"] = lga_actions.quote_prompt(),
               ["<C-space>"] = actions.to_fuzzy_refine,
             },
@@ -76,9 +77,15 @@ return {
             },
           },
         },
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_ivy({}),
+          },
+        },
       })
       telescope.load_extension("live_grep_args")
-      require("telescope").load_extension("rest")
+      telescope.load_extension("ui-select")
+      telescope.load_extension("rest")
     end,
     keys = {
       {
