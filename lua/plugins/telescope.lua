@@ -1,3 +1,6 @@
+local telescope = require("telescope")
+local telescope_builtin = require("telescope.builtin")
+
 local custom_find_files = function(title, paths_list, opts)
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
@@ -54,7 +57,6 @@ return {
       { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
-      local telescope = require("telescope")
       local actions = require("telescope.actions")
       local lga_actions = require("telescope-live-grep-args.actions")
       telescope.setup({
@@ -91,7 +93,7 @@ return {
       {
         "<leader>ff",
         function()
-          require("telescope.builtin").find_files({
+          telescope_builtin.find_files({
             find_command = { "fd", "--unrestricted", "--type", "f", "-E", ".git" },
           })
         end,
@@ -118,14 +120,14 @@ return {
       {
         "<leader>fa",
         function()
-          require("telescope").extensions.live_grep_args.live_grep_args()
+          telescope.extensions.live_grep_args.live_grep_args()
         end,
         desc = "Telescope: Live grep with args (rg)",
       },
       {
         "<leader>fb",
         function()
-          require("telescope.builtin").buffers({
+          telescope_builtin.buffers({
             sort_mru = true,
             ignore_current_buffer = true,
           })
@@ -195,7 +197,7 @@ return {
       {
         "<leader>fsd",
         function()
-          require("telescope.builtin").diagnostics({ bufnr = 0 })
+          telescope_builtin.diagnostics({ bufnr = 0 })
         end,
         desc = "Telescope: LSP diagnostics",
       },
@@ -237,7 +239,7 @@ return {
       {
         "<leader>fer",
         function()
-          require("telescope").extensions.rest.select_env()
+          telescope.extensions.rest.select_env()
         end,
         desc = "Telescope: Rest environment select",
       },
