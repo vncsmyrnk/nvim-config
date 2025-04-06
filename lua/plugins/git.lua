@@ -11,7 +11,9 @@ return {
     "lewis6991/gitsigns.nvim",
     event = "BufEnter",
     config = function()
-      require("gitsigns").setup()
+      require("gitsigns").setup({
+        sign_priority = 10000,
+      })
     end,
     keys = {
       { "]c", "<cmd>Gitsigns next_hunk<cr>", desc = "Gitsigns: Next hunk" },
