@@ -15,7 +15,7 @@ return {
     build = "make tiktoken",
     lazy = false,
     opts = {
-      debug = true,
+      debug = false,
       window = {
         width = 0.3,
       },
