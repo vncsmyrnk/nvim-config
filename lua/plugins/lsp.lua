@@ -10,17 +10,6 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      { "williamboman/mason.nvim" },
-    },
-    opts = {
-      ensure_installed = { "lua_ls" },
-    },
-  },
-
-  {
     "folke/trouble.nvim",
     opts = {},
     cmd = "Trouble",
