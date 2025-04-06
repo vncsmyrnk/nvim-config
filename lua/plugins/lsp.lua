@@ -4,6 +4,9 @@ return {
     dependencies = { "rafamadriz/friendly-snippets" },
     version = "1.*",
     opts = {
+      enabled = function()
+        return not vim.tbl_contains({ "copilot-chat", "markdown" }, vim.bo.filetype)
+      end,
       keymap = { preset = "default" },
       signature = { enabled = true },
     },
