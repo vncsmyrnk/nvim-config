@@ -16,6 +16,9 @@ return {
         ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
       },
       signature = { enabled = true },
+      cmdline = {
+        enabled = false,
+      },
     },
   },
 
