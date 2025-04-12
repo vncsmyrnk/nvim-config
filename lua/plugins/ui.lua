@@ -163,9 +163,17 @@ return {
   {
     "stevearc/oil.nvim",
     cmd = "Oil",
-    opts = {},
+    opts = {
+      columns = {
+        "icon",
+        "permissions",
+        "size",
+      },
+    },
     keys = {
-      { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil opens current dir in a float window" },
+      { "<leader>of", "<cmd>Oil --float<cr>", desc = "Oil: opens current dir in a float window" },
+      { "<leader>ot", "<cmd>tab Oil<cr>", desc = "Oil: opens current dir in a new tab" },
+      { "<leader>ov", "<cmd>vertical Oil<cr>", desc = "Oil: opens current dir in a vertical split" },
     },
     lazy = false,
   },
