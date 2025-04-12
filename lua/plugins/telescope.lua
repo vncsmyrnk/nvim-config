@@ -19,14 +19,12 @@ local custom_find_files = function(title, paths_list, opts)
     :find()
 end
 
-local custom_change_dir = function(title, paths_list, opts)
+local custom_picker = function(title, cmd, find_command, opts)
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
   local conf = require("telescope.config").values
-  local find_command = { "fd", ".", "--max-depth", 1, "-t", "d" }
-  vim.list_extend(find_command, paths_list)
 
   pickers
     .new(opts, {
@@ -39,7 +37,7 @@ local custom_change_dir = function(title, paths_list, opts)
         actions.select_default:replace(function(prompt_bufnr)
           local selection = action_state.get_selected_entry()
           actions.close(prompt_bufnr)
-          vim.cmd(string.format("tcd %s", selection.value))
+          vim.cmd(string.format(cmd, selection.value))
         end)
         return true
       end,
@@ -113,9 +111,24 @@ return {
         function()
           local paths = os.getenv("UTILS_PROJECTS_DIR") or string.format("%s/%s", os.getenv("HOME"), "workspace")
           local paths_list = vim.split(paths, " ")
-          custom_change_dir("Change project directory", paths_list, {})
+          local find_command = { "fd", ".", "--max-depth", 1, "-t", "d" }
+          vim.list_extend(find_command, paths_list)
+          custom_picker("Change project directory", "tcd %s", find_command, {})
         end,
         desc = "Telescope: Change project",
+      },
+      {
+        "<leader>fo",
+        function()
+          local find_command = { "fd", ".", "--max-depth", 4, "-t", "d", os.getenv("HOME") }
+          custom_picker("Open in Oil", "Oil %s", find_command, {})
+        end,
+        desc = "Telescope: Open in Oil",
+      },
+      {
+        "<leader>fO",
+        "<cmd>Telescope vim_options<cr>",
+        desc = "Telescope: Search vim options",
       },
       {
         "<leader>fa",
@@ -153,11 +166,6 @@ return {
         "<leader>fh",
         "<cmd>Telescope help_tags<cr>",
         desc = "Telescope: Search help tags",
-      },
-      {
-        "<leader>fo",
-        "<cmd>Telescope vim_options<cr>",
-        desc = "Telescope: Search vim options",
       },
       {
         "<leader>fl",
