@@ -55,10 +55,10 @@ vim.keymap.set("n", "<leader>tl", "<cmd>tabmove +1<cr>", { desc = "Moves tab to 
 vim.keymap.set("n", "<leader>tq", "<cmd>tabclose<cr>", { desc = "Closes current tab" })
 
 -- Quickfix list
-vim.keymap.set("n", "<leader>kn", "<cmd>cnext<cr>", { desc = "Quickfix: next item" })
-vim.keymap.set("n", "<leader>kp", "<cmd>cprev<cr>", { desc = "Quickfix: previous item" })
-vim.keymap.set("n", "<leader>kN", "<cmd>cnewer<cr>", { desc = "Quickfix: next list" })
-vim.keymap.set("n", "<leader>kP", "<cmd>colder<cr>", { desc = "Quickfix: previous list" })
+vim.keymap.set("n", "<leader>ko", "<cmd>copen<cr>", { desc = "Quickfix: open last list" })
+vim.keymap.set("n", "<leader>kq", "<cmd>cclose<cr>", { desc = "Quickfix: close list" })
+vim.keymap.set("n", "<leader>kn", "<cmd>cnewer<cr>", { desc = "Quickfix: next list" })
+vim.keymap.set("n", "<leader>kp", "<cmd>colder<cr>", { desc = "Quickfix: previous list" })
 
 -- LSP
 vim.keymap.set("n", "gK", "<cmd>lua vim.lsp.buf.hover()<cr>")
