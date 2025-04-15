@@ -1,25 +1,7 @@
 local telescope = require("telescope")
 local telescope_builtin = require("telescope.builtin")
 
-local custom_find_files = function(title, paths_list, opts)
-  local pickers = require("telescope.pickers")
-  local finders = require("telescope.finders")
-  local conf = require("telescope.config").values
-  local find_command = { "fd", ".", "--unrestricted", "--type", "f" }
-  vim.list_extend(find_command, paths_list)
-
-  pickers
-    .new(opts, {
-      prompt_title = title,
-      __locations_input = true,
-      finder = finders.new_oneshot_job(find_command, opts),
-      previewer = conf.grep_previewer(opts),
-      sorter = conf.file_sorter(opts),
-    })
-    :find()
-end
-
-local custom_picker = function(title, cmd, find_command, opts)
+local custom_file_picker = function(title, cmd, find_command, opts)
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
   local actions = require("telescope.actions")
@@ -102,7 +84,9 @@ return {
         function()
           local paths = os.getenv("UTILS_CUSTOM_DOCS_DIR") or string.format("%s/%s", os.getenv("HOME"), "Documents")
           local paths_list = vim.split(paths, " ")
-          custom_find_files("Find documents", paths_list, {})
+          local find_command = { "fd", ".", "--unrestricted", "--type", "f" }
+          vim.list_extend(find_command, paths_list)
+          custom_file_picker("Find documents", "e %s", find_command, {})
         end,
         desc = "Telescope: Find custom documents",
       },
@@ -113,15 +97,15 @@ return {
           local paths_list = vim.split(paths, " ")
           local find_command = { "fd", ".", "--max-depth", 1, "-t", "d" }
           vim.list_extend(find_command, paths_list)
-          custom_picker("Change project directory", "tcd %s", find_command, {})
+          custom_file_picker("Change project directory", "tcd %s", find_command, {})
         end,
         desc = "Telescope: Change project",
       },
       {
         "<leader>fo",
         function()
-          local find_command = { "fd", ".", "--max-depth", 4, "-t", "d", os.getenv("HOME") }
-          custom_picker("Open in Oil", "Oil %s", find_command, {})
+          local find_command = { "fd", ".", "--max-depth", 5, "-t", "d", os.getenv("HOME") }
+          custom_file_picker("Open in Oil", "Oil %s", find_command, {})
         end,
         desc = "Telescope: Open in Oil",
       },
