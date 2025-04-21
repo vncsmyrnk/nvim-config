@@ -1,25 +1,39 @@
 local telescope = require("telescope")
 local telescope_builtin = require("telescope.builtin")
 
-local custom_file_picker = function(title, cmd, find_command, opts)
+local custom_file_picker
+custom_file_picker = function(title, cmd, find_command, paths_list, opts)
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
   local conf = require("telescope.config").values
+  local final_find_command = vim.list_slice(find_command)
+  vim.list_extend(final_find_command, paths_list)
 
   pickers
     .new(opts, {
       prompt_title = title,
       __locations_input = true,
-      finder = finders.new_oneshot_job(find_command, opts),
+      finder = finders.new_oneshot_job(final_find_command, opts),
       sorter = conf.file_sorter(opts),
       previewer = conf.grep_previewer(opts),
-      attach_mappings = function()
+      attach_mappings = function(_, map)
         actions.select_default:replace(function(prompt_bufnr)
           local selection = action_state.get_selected_entry()
           actions.close(prompt_bufnr)
           vim.cmd(string.format(cmd, selection.value))
+        end)
+        map({ "i", "n" }, "<Right>", function(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+          actions.close(prompt_bufnr)
+          custom_file_picker(title, cmd, find_command, { selection.value }, opts)
+        end)
+        map({ "i", "n" }, "<Left>", function(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+          local parent_dir = vim.fs.joinpath(selection.value, "..", "..")
+          actions.close(prompt_bufnr)
+          custom_file_picker(title, cmd, find_command, { vim.fs.normalize(parent_dir) }, opts)
         end)
         return true
       end,
@@ -85,8 +99,7 @@ return {
           local paths = os.getenv("UTILS_CUSTOM_DOCS_DIR") or string.format("%s/%s", os.getenv("HOME"), "Documents")
           local paths_list = vim.split(paths, " ")
           local find_command = { "fd", ".", "--unrestricted", "--type", "f" }
-          vim.list_extend(find_command, paths_list)
-          custom_file_picker("Find documents", "e %s", find_command, {})
+          custom_file_picker("Find documents", "e %s", find_command, paths_list, {})
         end,
         desc = "Telescope: Find custom documents",
       },
@@ -96,16 +109,15 @@ return {
           local paths = os.getenv("UTILS_PROJECTS_DIR") or string.format("%s/%s", os.getenv("HOME"), "workspace")
           local paths_list = vim.split(paths, " ")
           local find_command = { "fd", ".", "--max-depth", 1, "-t", "d" }
-          vim.list_extend(find_command, paths_list)
-          custom_file_picker("Change project directory", "tcd %s", find_command, {})
+          custom_file_picker("Change project directory", "tcd %s", find_command, paths_list, {})
         end,
         desc = "Telescope: Change project",
       },
       {
         "<leader>fo",
         function()
-          local find_command = { "fd", ".", "--max-depth", 5, "-t", "d", os.getenv("HOME") }
-          custom_file_picker("Open in Oil", "Oil %s", find_command, {})
+          local find_command = { "fd", ".", "--max-depth", 5, "-t", "d" }
+          custom_file_picker("Open in Oil", "Oil %s", find_command, { os.getenv("HOME") }, {})
         end,
         desc = "Telescope: Open in Oil",
       },
