@@ -76,9 +76,6 @@ vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>")
 -- Lazy
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
--- TUI apps
-vim.keymap.set("n", "<leader>gl", "<cmd>$tab term lazygit<cr>", { desc = "TUI: Opens lazygit" })
-
 -- Language Specific
 
 -- PHP
