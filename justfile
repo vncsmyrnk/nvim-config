@@ -15,7 +15,7 @@ install-deps:
     }
     brew install luarocks neovim gh lazygit
   elif [ "{{os}}" = "Arch Linux" ]; then
-    sudo pacman -S base-devel curl tar git ripgrep stow luarocks neovim github-cli xclip lazygit fd
+    sudo pacman -S base-devel curl tar git ripgrep stow luarocks neovim github-cli xclip lazygit fd gh
   fi
 
 install: install-deps config config-gh
