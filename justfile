@@ -8,7 +8,7 @@ install-deps:
   if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
     sudo apt-get install build-essential curl tar git ripgrep stow xclip fd-find
     command -v brew >/dev/null || {
-      read -p "Brew has the latest version for neovim, apt version is outdated. Install brew and neovim or exit? (Y/n)" choice
+      read -p "Brew has the latest version for neovim, apt version is outdated. Install neovim over brew or exit? (Y/n)" choice
       [[ ${choice-y} == "y" ]] || {
         exit 0
       }
