@@ -10,12 +10,10 @@ return {
     config = function()
       require("mason").setup()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls" },
-        handlers = {
-          function(server_name)
-            require("lspconfig")[server_name].setup({})
-          end,
+        automatic_enable = {
+          exclude = { "lua_ls" },
         },
+        ensure_installed = { "lua_ls" },
       })
 
       require("lspconfig").lua_ls.setup({
