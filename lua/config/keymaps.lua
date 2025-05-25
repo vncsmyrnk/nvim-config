@@ -12,6 +12,11 @@ vim.keymap.set("n", "<leader>qb", "<cmd>%bd|e#<cr>", { desc = "Close all buffers
 vim.keymap.set("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Close session" })
 vim.keymap.set("n", "<leader>qA", "<cmd>qa!<cr>", { desc = "Close session without saving" })
 
+-- Moving lines around
+-- <cmd> does not preserve the visual selection or range. Silent avoids the cmdline of being focused
+vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { silent = true, desc = "Move lines down" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move lines up" })
+
 -- Copy file name
 vim.keymap.set("n", "<leader>eyp", '<cmd>let @+ = expand("%:p")<cr>', { desc = "Copy current buffer absolute path" })
 vim.keymap.set("n", "<leader>eyf", '<cmd>let @+ = expand("%:f")<cr>', { desc = "Copy current buffer relative path" })
