@@ -7,13 +7,13 @@ install-deps:
   #!/bin/bash
   if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
     sudo apt-get install build-essential curl tar git ripgrep stow xclip fd-find
-    command -v brew >/dev/null || {
-      read -p "Brew has the latest version for neovim, apt version is outdated. Install neovim over brew or exit? (Y/n)" choice
+    command -v nix-env >/dev/null || {
+      read -p "nix has the latest version for neovim, apt version is outdated. Install neovim over nix or exit? (Y/n)" choice
       [[ ${choice-y} == "y" ]] || {
         exit 0
       }
     }
-    brew install luarocks neovim gh lazygit
+    nix-env -iA nixpkgs.lua51Packages.luarocks nixpkgs.neovim nixpkgs.gh nixpkgs.lazygit
   elif [ "{{os}}" = "Arch Linux" ]; then
     sudo pacman -S base-devel curl tar git ripgrep stow luarocks neovim github-cli xclip lazygit fd gh
   fi
