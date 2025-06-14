@@ -345,6 +345,10 @@ return {
       "DBUIAddConnection",
       "DBUIFindBuffer",
     },
+    keys = {
+      { "<leader>bo", "<cmd>DBUI<cr>", desc = "DBUI: open" },
+      { "<leader>bt", "<cmd>DBUIToggle<cr>", desc = "DBUI: toggle" },
+    },
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1
       vim.g.db_ui_execute_on_save = 0
