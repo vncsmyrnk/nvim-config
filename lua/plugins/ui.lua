@@ -131,6 +131,8 @@ return {
         { "go", desc = "LSP: Go to type definition" },
         { "gr", desc = "LSP: Go to references" },
         { "gs", desc = "LSP: Signature help" },
+        { "gp", desc = "LSP: Use the right split (meta)" },
+        { "gP", desc = "LSP: Use a new right split (meta)" },
         { "<F2>", desc = "LSP: Buffer rename" },
         { "<F3>", desc = "LSP: Buffer format" },
         { "<F4>", desc = "LSP: Code actions" },

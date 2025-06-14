@@ -1,3 +1,30 @@
+--- executes a function in a new right vsplit
+---@param callback function
+---@return function
+local on_new_rvsplit = function(callback)
+  return function()
+    vim.cmd("vsplit")
+    vim.cmd("wincmd l")
+    callback()
+  end
+end
+
+--- executes a function in an existing right vsplit
+---@param callback function
+---@return function
+local on_existing_rvsplit = function(callback)
+  return function()
+    local cur_win = vim.api.nvim_get_current_win()
+    local cur_buf = vim.api.nvim_get_current_buf()
+    local cur_pos = vim.api.nvim_win_get_cursor(cur_win)
+    vim.cmd("wincmd l")
+    local new_win = vim.api.nvim_get_current_win()
+    vim.api.nvim_set_current_buf(cur_buf)
+    vim.api.nvim_win_set_cursor(new_win, cur_pos)
+    callback()
+  end
+end
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
@@ -66,7 +93,7 @@ vim.keymap.set("n", "<leader>kn", "<cmd>cnewer<cr>", { desc = "Quickfix: next li
 vim.keymap.set("n", "<leader>kp", "<cmd>colder<cr>", { desc = "Quickfix: previous list" })
 
 -- LSP
-vim.keymap.set("n", "gK", "<cmd>lua vim.lsp.buf.hover()<cr>")
+vim.keymap.set("n", "gK", "<cmd>lua vim.lsp.buf.hover()<cr>", { desc = "LSP: hover" })
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
 vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
 vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
@@ -77,6 +104,10 @@ vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
 vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>")
 vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>")
 vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>")
+
+vim.keymap.set("n", "gpd", on_existing_rvsplit(vim.lsp.buf.definition), { desc = "LSP: definition in the right split" })
+vim.keymap.set("n", "gPd", on_new_rvsplit(vim.lsp.buf.definition), { desc = "LSP: definition in a split" })
+
 vim.keymap.set("n", "<leader>cL", "<cmd>bufdo LspRestart<cr>", { desc = "LSP: Restart LSP on all open buffers" })
 
 -- Lazy
