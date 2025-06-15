@@ -1,5 +1,4 @@
 require("config.keymap")
-require("config.tui")
 require("config.options")
 require("config.autocmds")
 require("config.lsp")
