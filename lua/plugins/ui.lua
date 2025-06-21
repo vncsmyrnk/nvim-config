@@ -35,7 +35,11 @@ return {
       routes = {
         {
           view = "split",
-          filter = { event = "msg_show", min_height = 20 },
+          filter = {
+            event = "msg_show",
+            kind = { "echo_msg", "list_cmd", "shell_out" },
+          },
+          opts = { replace = true, merge = true, title = "Messages" },
         },
       },
     },
