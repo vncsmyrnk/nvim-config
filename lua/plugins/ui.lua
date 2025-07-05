@@ -321,11 +321,12 @@ return {
   },
 
   {
-    "OXY2DEV/markview.nvim",
-    ft = "markdown",
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>md", "<cmd>Markview Disable<cr>", desc = "Markview: disable" },
-      { "<leader>me", "<cmd>Markview Enable<cr>", desc = "Markview: enable" },
+      { "<leader>md", "<cmd>RenderMarkdown disable<cr>", desc = "markdown: disable" },
+      { "<leader>me", "<cmd>RenderMarkdown enable<cr>", desc = "markdown: enable" },
     },
   },
 
