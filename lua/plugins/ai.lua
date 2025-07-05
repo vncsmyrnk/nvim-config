@@ -11,6 +11,7 @@ return {
 
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = false,
     branch = "main",
     build = "make tiktoken",
     lazy = false,
@@ -23,6 +24,23 @@ return {
     keys = {
       { "<leader>ac", "<cmd>CopilotChat<cr>", desc = "CopilotChat open" },
       { "<leader>aq", "<cmd>CopilotChatClose<cr>", desc = "CopilotChat close" },
+    },
+  },
+
+  {
+    "olimorris/codecompanion.nvim",
+    opts = {
+      display = {
+        chat = {
+          window = {
+            width = 0.3,
+          },
+        },
+      },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
     },
   },
 
