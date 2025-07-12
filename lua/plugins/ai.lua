@@ -62,6 +62,11 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
+    keys = {
+      { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion: open actions" },
+      { "<leader>ac", "<cmd>CodeCompanionChat<cr>", desc = "CodeCompanion: open chat" },
+      { "<leader>ai", "<cmd>CodeCompanion<cr>", desc = "CodeCompanion: visual selection" },
+    },
   },
 
   { "AndreM222/copilot-lualine" },
