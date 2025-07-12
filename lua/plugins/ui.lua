@@ -96,8 +96,7 @@ return {
     opts = {
       preset = "modern",
       spec = {
-        { "<leader>a", group = "AI/Copilot" },
-        { "<leader>c", group = "Code" },
+        { "<leader>c", group = "CodeCompanion" },
         { "<leader>cg", group = "Golang" },
         { "<leader>F", group = "Files in cwd" },
         { "<leader>f", group = "File find" },
