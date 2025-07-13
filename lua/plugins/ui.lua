@@ -4,7 +4,11 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme tokyonight-night]])
+      require("tokyonight").setup({
+        style = "night",
+        terminal_colors = false,
+      })
+      vim.cmd([[colorscheme tokyonight]])
     end,
   },
 
