@@ -3,22 +3,18 @@ os := `cat /etc/os-release | grep "^NAME=" | cut -d "=" -f2 | tr -d '"'`
 default:
   just --list
 
-install-deps:
+check-deps:
   #!/bin/bash
-  if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
-    sudo apt-get install build-essential curl tar git ripgrep stow xclip fd-find
-    command -v nix-env >/dev/null || {
-      read -p "nix has the latest version for neovim, apt version is outdated. Install neovim over nix or exit? (Y/n)" choice
-      [[ ${choice-y} == "y" ]] || {
-        exit 0
-      }
-    }
-    nix-env -iA nixpkgs.lua51Packages.luarocks nixpkgs.neovim nixpkgs.gh nixpkgs.lazygit
-  elif [ "{{os}}" = "Arch Linux" ]; then
-    sudo pacman -S base-devel curl tar git ripgrep stow luarocks neovim github-cli xclip lazygit fd gh
+  dependencies=(curl tar git stow xclip rg nvim luarocks gh lazygit fd)
+  missing_dependencies=($(for dep in "${dependencies[@]}"; do command -v "$dep" &> /dev/null || echo "$dep"; done))
+
+  if [ ${#missing_dependencies[@]} -gt 0 ]; then
+    echo "Dependencies not found: ${missing_dependencies[*]}"
+    echo "Please install them with the appropriate package manager"
+    exit 1
   fi
 
-install: install-deps config config-gh
+install: check-deps config config-gh
 
 config:
   mkdir -p {{home_dir()}}/.config/nvim
