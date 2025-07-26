@@ -71,5 +71,6 @@ return {
     end,
   },
 
+  { "sindrets/diffview.nvim" },
   { "rhysd/git-messenger.vim" },
 }
