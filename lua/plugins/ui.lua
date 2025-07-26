@@ -102,6 +102,7 @@ return {
       spec = {
         { "<leader>a", group = "AI/CodeCompanion" },
         { "<leader>c", group = "Code" },
+        { "<leader>d", group = "DAP" },
         { "<leader>F", group = "Files in cwd" },
         { "<leader>f", group = "File find" },
         { "<leader>fg", group = "File find (Git)" },
