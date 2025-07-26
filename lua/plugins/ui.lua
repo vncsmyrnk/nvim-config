@@ -285,12 +285,6 @@ return {
   },
 
   {
-    "folke/ts-comments.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
-
-  {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
     config = function()
@@ -322,16 +316,6 @@ return {
         },
       })
     end,
-  },
-
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "codecompanion" },
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-    keys = {
-      { "<leader>md", "<cmd>RenderMarkdown disable<cr>", desc = "markdown: disable" },
-      { "<leader>me", "<cmd>RenderMarkdown enable<cr>", desc = "markdown: enable" },
-    },
   },
 
   -- INFO: https://www.jetbrains.com/help/idea/exploring-http-syntax.html
