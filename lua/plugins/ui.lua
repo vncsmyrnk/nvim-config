@@ -318,15 +318,5 @@ return {
     end,
   },
 
-  -- INFO: https://www.jetbrains.com/help/idea/exploring-http-syntax.html
-  {
-    "rest-nvim/rest.nvim",
-    cmd = "Rest",
-    keys = {
-      { "<leader>rr", "<cmd>Rest run<cr>", desc = "Rest: run" },
-      { "<leader>rh", "<cmd>hor Rest run<cr>", desc = "Rest: run (open above)" },
-    },
-  },
-
   { "sindrets/diffview.nvim" },
 }
