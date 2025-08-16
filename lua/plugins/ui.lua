@@ -1,3 +1,5 @@
+local utils = require("config.utils")
+
 return {
   {
     "projekt0n/github-nvim-theme",
@@ -205,7 +207,14 @@ return {
             },
           },
           lualine_x = {
-            "rest",
+            {
+              function()
+                if utils.plugin_loaded("kulala.nvim") then
+                  return require("kulala").get_selected_env()
+                end
+                return ""
+              end,
+            },
             "copilot",
             {
               require("noice").api.status.command.get,

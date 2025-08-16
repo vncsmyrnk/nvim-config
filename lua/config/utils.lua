@@ -53,4 +53,12 @@ function M.on_a_new_tab(callback)
   end
 end
 
+--- checks if a plugin is loaded in the current plugin management system
+--- @param plugin_name string
+--- @return boolean
+function M.plugin_loaded(plugin_name)
+  local plugins = require("lazy.core.config").plugins
+  return plugins[plugin_name]._.loaded ~= nil
+end
+
 return M
