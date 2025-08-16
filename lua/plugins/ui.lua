@@ -168,33 +168,9 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     config = function()
-      local colors = {
-        blue = "#80ccff",
-        cyan = "#79dac8",
-        black = "#080808",
-        white = "#c6c6c6",
-        red = "#ff5189",
-        violet = "#8385e8",
-        grey = "#303030",
-      }
-
-      local theme = {
-        normal = {
-          a = { fg = colors.black, bg = colors.violet },
-          b = { fg = colors.white, bg = colors.grey },
-          c = { fg = colors.white },
-        },
-
-        insert = { a = { fg = colors.black, bg = colors.blue } },
-        visual = { a = { fg = colors.black, bg = colors.cyan } },
-        replace = { a = { fg = colors.black, bg = colors.red } },
-
-        inactive = {
-          a = { fg = colors.white, bg = colors.black },
-          b = { fg = colors.white, bg = colors.black },
-          c = { fg = colors.white },
-        },
-      }
+      local custom_iceberg_dark = require("lualine.themes.iceberg_dark")
+      custom_iceberg_dark.normal.c.bg = "transparent"
+      custom_iceberg_dark.inactive.c.bg = "transparent"
 
       local function search_result()
         if vim.v.hlsearch == 0 then
@@ -214,9 +190,9 @@ return {
 
       require("lualine").setup({
         options = {
-          theme = theme,
+          theme = custom_iceberg_dark,
           component_separators = "",
-          section_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
         },
         sections = {
           lualine_a = {
