@@ -142,7 +142,7 @@ return {
       {
         "<leader>ft",
         function()
-          require("fzf-lua").man_pages()
+          require("fzf-lua").help_tags()
         end,
         desc = "fzf: help tags",
       },
