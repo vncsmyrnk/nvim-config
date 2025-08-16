@@ -1,14 +1,20 @@
 return {
   {
-    "folke/tokyonight.nvim",
+    "projekt0n/github-nvim-theme",
+    name = "github-theme",
     lazy = false,
     priority = 1000,
     config = function()
-      require("tokyonight").setup({
-        style = "night",
-        terminal_colors = false,
+      require("github-theme").setup({
+        options = {
+          terminal_colors = false,
+        },
       })
-      vim.cmd([[colorscheme tokyonight]])
+
+      vim.cmd([[colorscheme github_dark_default]])
+
+      local palette = require("github-theme.palette").load("github_dark")
+      vim.api.nvim_set_hl(0, "StatusLine", { fg = "#ffffff", bg = palette.black.base })
     end,
   },
 
