@@ -21,83 +21,18 @@ return {
   },
 
   {
-    "OXY2DEV/ui.nvim",
+    "folke/snacks.nvim",
     lazy = false,
-    enabled = false,
-  },
-
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
     opts = {
-      lsp = {
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
-        },
-      },
-      presets = {
-        bottom_search = false,
-        command_palette = true,
-        long_message_to_split = true,
-        inc_rename = false,
-        lsp_doc_border = false,
-      },
-    },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+      notifier = {},
     },
     keys = {
       {
-        "<leader>nl",
-        function()
-          require("noice").cmd("last")
-        end,
-        desc = "Noice Last Message",
-      },
-      {
         "<leader>nh",
         function()
-          require("noice").cmd("pick")
+          require("snacks.notifier").show_history()
         end,
-        desc = "Noice History",
-      },
-      {
-        "<leader>nH",
-        function()
-          require("noice").cmd("history")
-        end,
-        desc = "Noice History (separate buffer)",
-      },
-      {
-        "<leader>na",
-        function()
-          require("noice").cmd("all")
-        end,
-        desc = "Noice All",
-      },
-      {
-        "<leader>nd",
-        function()
-          require("noice").cmd("dismiss")
-        end,
-        desc = "Dismiss All",
-      },
-      {
-        "<leader>nD",
-        function()
-          require("noice").cmd("disable")
-        end,
-        desc = "Disables noice",
-      },
-      {
-        "<leader>nE",
-        function()
-          require("noice").cmd("enable")
-        end,
-        desc = "Enables noice",
+        desc = "notifier: Show snacks notification history",
       },
     },
   },
@@ -121,7 +56,7 @@ return {
         { "<leader>ip", group = "Insert snippets (PHP)" },
         { "<leader>k", group = "Quickfix list" },
         { "<leader>m", group = "Markdown" },
-        { "<leader>n", group = "Noice (notify)" },
+        { "<leader>n", group = "Snacks notifier" },
         { "<leader>o", group = "Oil" },
         { "<leader>q", group = "Quit" },
         { "<leader>r", group = "Rest" },
@@ -216,16 +151,6 @@ return {
               end,
             },
             "copilot",
-            {
-              require("noice").api.status.command.get,
-              cond = require("noice").api.status.command.has,
-              color = { fg = "#ff9e64" },
-            },
-            {
-              require("noice").api.status.mode.get,
-              cond = require("noice").api.status.mode.has,
-              color = { fg = "#ff9e64" },
-            },
           },
           lualine_y = {
             search_result,
