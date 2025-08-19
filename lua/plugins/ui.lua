@@ -2,21 +2,23 @@ local utils = require("config.utils")
 
 return {
   {
-    "projekt0n/github-nvim-theme",
-    name = "github-theme",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("github-theme").setup({
-        options = {
-          terminal_colors = false,
-        },
+      require("tokyonight").setup({
+        style = "night",
+        terminal_colors = false,
+        on_colors = function(colors)
+          colors.bg = "#0d1117"
+          colors.bg_statusline = "#0d1117"
+          colors.bg_dark = "#0a0d12"
+          colors.bg_dark1 = "#0a0d12"
+          colors.bg_float = "#0a0d12"
+          colors.bg_sidebar = "#0a0d12"
+        end,
       })
-
-      vim.cmd([[colorscheme github_dark_default]])
-
-      local palette = require("github-theme.palette").load("github_dark")
-      vim.api.nvim_set_hl(0, "StatusLine", { fg = "#ffffff", bg = palette.black.base })
+      vim.cmd([[colorscheme tokyonight]])
     end,
   },
 
