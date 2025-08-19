@@ -190,9 +190,15 @@ return {
             {
               function()
                 if utils.plugin_loaded("kulala.nvim") then
-                  return require("kulala").get_selected_env()
+                  local selected_env = require("kulala").get_selected_env()
+                  return string.format("kenv: %s", selected_env)
                 end
                 return ""
+              end,
+              cond = function()
+                local filetype = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+                local supported_fts = { "http", "text.kulala_ui" }
+                return vim.tbl_contains(supported_fts, filetype)
               end,
             },
             "copilot",
