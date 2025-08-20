@@ -11,6 +11,7 @@ return {
         terminal_colors = false,
         on_colors = function(colors)
           colors.bg = "#0d1117"
+          colors.border = "#1f242d"
           colors.bg_statusline = "#0d1117"
           colors.bg_dark = "#0a0d12"
           colors.bg_dark1 = "#0a0d12"
