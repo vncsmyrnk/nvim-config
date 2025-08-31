@@ -26,7 +26,7 @@ return {
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 
   {
-    "echasnovski/mini.pairs",
+    "nvim-mini/mini.pairs",
     event = "BufEnter",
     config = function()
       require("mini.pairs").setup()
@@ -34,7 +34,7 @@ return {
   },
 
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     event = "BufEnter",
     config = function()
       require("mini.surround").setup()
