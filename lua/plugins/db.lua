@@ -15,6 +15,26 @@ return {
       vim.g.db_ui_use_nerd_fonts = 1
       vim.g.db_ui_execute_on_save = 0
       vim.g.db_ui_save_location = "~/misc/sql"
+      vim.g.dbs = {
+        {
+          name = "dev",
+          url = function()
+            return os.getenv("DB_DEV_URL")
+          end,
+        },
+        {
+          name = "prod",
+          url = function()
+            return os.getenv("DB_PROD_URL")
+          end,
+        },
+        {
+          name = "extra",
+          url = function()
+            return os.getenv("DB_EXTRA_URL")
+          end,
+        },
+      }
     end,
     keys = {
       { "<leader>st", "<cmd>DBUIToggle<cr>", desc = "DBUI: toggles UI" },
