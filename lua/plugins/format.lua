@@ -17,6 +17,7 @@ return {
         json = { "jq" },
         zsh = { "shfmt" },
         rust = { "rustfmt" },
+        nix = { "nixfmt" },
       },
       format_on_save = function(bufnr)
         -- INFO: https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md
