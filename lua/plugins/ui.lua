@@ -151,9 +151,13 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     config = function()
-      local custom_iceberg_dark = require("lualine.themes.iceberg_dark")
-      custom_iceberg_dark.normal.c.bg = "transparent"
-      custom_iceberg_dark.inactive.c.bg = "transparent"
+      local theme = require("lualine.themes.moonfly")
+      local modes = { "normal", "insert", "visual", "replace", "command", "inactive" }
+      for _, mode in ipairs(modes) do
+        if theme[mode] ~= nil and theme[mode].c ~= nil then
+          theme[mode].c.bg = "transparent"
+        end
+      end
 
       local function search_result()
         if vim.v.hlsearch == 0 then
@@ -173,7 +177,7 @@ return {
 
       require("lualine").setup({
         options = {
-          theme = custom_iceberg_dark,
+          theme = theme,
           component_separators = "",
           section_separators = { left = "", right = "" },
         },
