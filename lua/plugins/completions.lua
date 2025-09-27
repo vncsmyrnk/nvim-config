@@ -17,7 +17,8 @@ return {
       },
       signature = { enabled = true },
       cmdline = {
-        enabled = false,
+        keymap = { preset = "inherit" },
+        completion = { menu = { auto_show = true } },
       },
     },
   },
