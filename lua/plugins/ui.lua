@@ -217,16 +217,6 @@ return {
   },
 
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree",
-    keys = {
-      { "<leader>ee", "<cmd>Neotree toggle<cr>", desc = "Neotree toggle" },
-      { "<leader>ef", "<cmd>Neotree reveal<cr>", desc = "Neotree reveal" },
-      { "<leader>eg", "<cmd>Neotree git_status<cr>", desc = "Neotree git status" },
-    },
-  },
-
-  {
     "stevearc/oil.nvim",
     cmd = "Oil",
     opts = {
