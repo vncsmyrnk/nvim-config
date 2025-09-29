@@ -8,18 +8,18 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main",
     build = ":TSUpdate",
-    lazy = false,
-    opts = {
-      ensure_installed = {},
-      sync_install = false,
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { "go" },
-      },
-    },
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {},
+        sync_install = false,
+        auto_install = true,
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = { "go" },
+        },
+      })
+    end,
   },
 
   -- TODO: Use nvim-treesitter/nvim-treesitter-textobjects
