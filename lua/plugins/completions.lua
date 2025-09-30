@@ -19,6 +19,13 @@ return {
       cmdline = {
         keymap = { preset = "inherit" },
         completion = { menu = { auto_show = true } },
+        sources = function()
+          local type = vim.fn.getcmdtype()
+          if type == "/" or type == "?" then
+            return {}
+          end
+          return { "buffer", "cmdline" }
+        end,
       },
     },
   },
