@@ -5,7 +5,7 @@ default:
 
 check-deps:
   #!/bin/bash
-  dependencies=(curl tar git stow xclip rg nvim luarocks gh lazygit fd)
+  dependencies=(curl tar git stow xclip rg nvim luarocks gh lazygit fd tree-sitter)
   missing_dependencies=($(for dep in "${dependencies[@]}"; do command -v "$dep" &> /dev/null || echo "$dep"; done))
 
   if [ ${#missing_dependencies[@]} -gt 0 ]; then

@@ -19,6 +19,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.equalalways = false
 vim.opt.showmode = false
+vim.opt.foldlevel = 99
 
 -- Displays tab/space, trailing whitespace
 vim.opt.list = true
