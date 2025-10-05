@@ -12,6 +12,18 @@ To work properly this repo should be cloned/copied to `~/.config/nvim`.
 > [!NOTE]
 > [Latest nvim releases](https://github.com/neovim/neovim/releases) should be compatible with this configuration.
 
+## Dependencies
+
+- [nvim](https://neovim.io/)
+- [stow](https://www.gnu.org/software/stow/)
+- [tree-sitter](https://tree-sitter.github.io/tree-sitter/)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [fd](https://github.com/sharkdp/fd)
+- [gh](https://cli.github.com/)
+- [lazygit](https://github.com/jesseduffield/lazygit)
+- [luarocks](https://luarocks.org/)
+- xclip
+
 ## Install
 
 This project uses [just](https://github.com/casey/just) and [stow](https://www.gnu.org/software/stow/) for the installation.
