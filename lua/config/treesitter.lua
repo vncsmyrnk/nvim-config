@@ -1,5 +1,13 @@
 local ts = require("nvim-treesitter")
 
+-- tracks the parsers which do not match the filetype
+local aliases = { mysql = "sql", gitrebase = "git_rebase" }
+
+-- registers parsers wich do not match the filetype
+for k, v in pairs(aliases) do
+  vim.treesitter.language.register(v, { k })
+end
+
 -- applies TS config
 local setup_treesitter = function()
   vim.treesitter.start()
@@ -14,7 +22,12 @@ local on_any_file_type = function()
   local ft = vim.bo.filetype
 
   local parsers_available = ts.get_available()
-  if not vim.tbl_contains(parsers_available, ft) then
+  if not vim.tbl_contains(parsers_available, ft) and aliases[ft] == nil then
+    return
+  end
+
+  if aliases[ft] ~= nil then
+    ts.install({ aliases[ft] }):await(setup_treesitter)
     return
   end
 
