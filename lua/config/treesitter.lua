@@ -10,7 +10,6 @@ end
 
 -- applies TS config
 local setup_treesitter = function()
-  vim.treesitter.start()
   vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
   vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   vim.opt.foldmethod = "expr"
@@ -20,6 +19,7 @@ end
 -- the parser if necessary
 local on_any_file_type = function()
   local ft = vim.bo.filetype
+  pcall(vim.treesitter.start)
 
   local parsers_available = ts.get_available()
   if not vim.tbl_contains(parsers_available, ft) and aliases[ft] == nil then
@@ -40,7 +40,10 @@ local on_any_file_type = function()
   setup_treesitter()
 end
 
+local ts_start_group = vim.api.nvim_create_augroup("MyTreesitterStart", { clear = true })
+
 vim.api.nvim_create_autocmd("FileType", {
+  group = ts_start_group,
   pattern = { "*" },
   callback = on_any_file_type,
 })
