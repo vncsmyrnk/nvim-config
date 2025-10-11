@@ -16,6 +16,7 @@ return {
         lua = { "stylua" },
         json = { "jq" },
         zsh = { "shfmt" },
+        sh = { "shfmt" },
         rust = { "rustfmt" },
         nix = { "nixfmt" },
       },
