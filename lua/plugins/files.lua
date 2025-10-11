@@ -86,7 +86,12 @@ return {
         "<leader>fa",
         function()
           local sep = package.config:sub(1, 1)
-          require("fzf-lua").live_grep({ cwd_only = vim.fn.getcwd() .. sep, no_ignore = true })
+          require("fzf-lua").live_grep({
+            cwd_only = vim.fn.getcwd() .. sep,
+            no_ignore = true,
+            hidden = true,
+            follow = true,
+          })
         end,
         desc = "fzf: live grep in cwd",
       },
