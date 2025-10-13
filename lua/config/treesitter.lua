@@ -1,7 +1,7 @@
 local ts = require("nvim-treesitter")
 
 -- tracks the parsers which do not match the filetype
-local aliases = { mysql = "sql", gitrebase = "git_rebase", sh = "bash" }
+local aliases = { mysql = "sql", gitrebase = "git_rebase", sh = "bash", zsh = "bash" }
 
 -- registers parsers wich do not match the filetype
 for k, v in pairs(aliases) do
