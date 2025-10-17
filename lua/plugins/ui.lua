@@ -221,35 +221,6 @@ return {
   },
 
   {
-    "stevearc/oil.nvim",
-    cmd = "Oil",
-    opts = {
-      columns = {
-        "icon",
-        "permissions",
-        "size",
-      },
-      float = {
-        border = "rounded",
-      },
-      keymaps = {
-        ["<C-o>"] = function()
-          local oil = require("oil")
-          local dir = oil.get_current_dir()
-          local entry = oil.get_cursor_entry()
-          vim.cmd(string.format("tabp | e %s%s", dir, entry.name))
-        end,
-      },
-    },
-    keys = {
-      { "<leader>of", "<cmd>Oil --float<cr>", desc = "Oil: opens current dir in a float window" },
-      { "<leader>ot", "<cmd>tab Oil<cr>", desc = "Oil: opens current dir in a new tab" },
-      { "<leader>ov", "<cmd>vertical Oil<cr>", desc = "Oil: opens current dir in a vertical split" },
-    },
-    lazy = false,
-  },
-
-  {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
     config = function()
