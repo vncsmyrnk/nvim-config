@@ -229,6 +229,9 @@ return {
         "permissions",
         "size",
       },
+      float = {
+        border = "rounded",
+      },
       keymaps = {
         ["<C-o>"] = function()
           local oil = require("oil")
