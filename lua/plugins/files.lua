@@ -11,6 +11,9 @@ return {
       float = {
         border = "rounded",
       },
+      confirmation = {
+        border = "rounded",
+      },
       keymaps = {
         ["<C-o>"] = function()
           local oil = require("oil")
