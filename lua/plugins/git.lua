@@ -48,10 +48,14 @@ return {
     keys = {
       {
         "<leader>gy",
-        function()
-          require("gitlinker").get_buf_range_url({ "n", "v" }, {})
-        end,
-        mode = { "n", "v" },
+        "<cmd>lua require'gitlinker'.get_buf_range_url('n', {})<cr>",
+        mode = { "n" },
+        desc = "gitlinker: yank repo permanent link",
+      },
+      {
+        "<leader>gy",
+        "<cmd>lua require'gitlinker'.get_buf_range_url('v', {})<cr>",
+        mode = { "v" },
         desc = "gitlinker: yank repo permanent link",
       },
     },
