@@ -3,16 +3,26 @@ local ts = require("nvim-treesitter")
 -- tracks the parsers which do not match the filetype
 local aliases = { mysql = "sql", gitrebase = "git_rebase", sh = "bash", zsh = "bash" }
 
+-- tracks TS indent exceptions
+local indent_exceptions = { "sh", "bash", "zsh" }
+
 -- registers parsers wich do not match the filetype
 for k, v in pairs(aliases) do
   vim.treesitter.language.register(v, { k })
 end
 
 -- applies TS config
-local setup_treesitter = function()
+---@param ft string
+local setup_treesitter = function(ft)
   vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-  vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   vim.opt.foldmethod = "expr"
+
+  vim.bo.indentexpr = ""
+  if vim.tbl_contains(indent_exceptions, ft) == nil then
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end
+
+  pcall(vim.treesitter.start)
 end
 
 -- applies TS config for the current buffer and auto installs
@@ -37,7 +47,7 @@ local on_any_file_type = function()
     return
   end
 
-  setup_treesitter()
+  setup_treesitter(ft)
 end
 
 local ts_start_group = vim.api.nvim_create_augroup("MyTreesitterStart", { clear = true })
