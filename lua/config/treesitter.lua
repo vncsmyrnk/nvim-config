@@ -18,7 +18,7 @@ local setup_treesitter = function(ft)
   vim.opt.foldmethod = "expr"
 
   vim.bo.indentexpr = ""
-  if vim.tbl_contains(indent_exceptions, ft) == nil then
+  if not vim.tbl_contains(indent_exceptions, ft) then
     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end
 
@@ -29,25 +29,14 @@ end
 -- the parser if necessary
 local on_any_file_type = function()
   local ft = vim.bo.filetype
-  pcall(vim.treesitter.start)
-
-  local parsers_available = ts.get_available()
-  if not vim.tbl_contains(parsers_available, ft) and aliases[ft] == nil then
-    return
-  end
 
   if aliases[ft] ~= nil then
-    ts.install({ aliases[ft] }):await(setup_treesitter)
-    return
+    ft = aliases[ft]
   end
 
-  local parsers_installed = ts.get_installed()
-  if not vim.tbl_contains(parsers_installed, ft) then
-    ts.install({ ft }):await(setup_treesitter)
-    return
-  end
-
-  setup_treesitter(ft)
+  ts.install({ ft }):await(function()
+    setup_treesitter(ft)
+  end)
 end
 
 local ts_start_group = vim.api.nvim_create_augroup("MyTreesitterStart", { clear = true })
