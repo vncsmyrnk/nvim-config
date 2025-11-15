@@ -4,7 +4,7 @@ default:
   just --list
 
 check-deps:
-  #!/bin/bash
+  #!/usr/bin/env bash
   dependencies=(curl tar git stow xclip rg nvim luarocks gh lazygit fd tree-sitter)
   missing_dependencies=($(for dep in "${dependencies[@]}"; do command -v "$dep" &> /dev/null || echo "$dep"; done))
 
@@ -29,3 +29,28 @@ unset-config:
 
 clean-lazy:
   rm -rf ~/.local/share/nvim/lazy
+
+# Works for x86_86 only
+install-neovim-latest-manually:
+  #!/usr/bin/env bash
+  latest_version=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest | jq -r '.tag_name')
+  if command -v nvim >/dev/null; then
+    current_version=$(nvim --version | head -n 1 | cut -d ' ' -f2)
+    if [[ "$latest_version" = "$current_version" ]]; then
+      echo "latest version installed"
+      exit 0
+    fi
+  fi
+  just install-neovim-manually $latest_version
+
+# Works for x86_86 only
+install-neovim-manually version:
+  #!/usr/bin/env bash
+  curl -L -o /tmp/nvim.tar.gz  "https://github.com/neovim/neovim/releases/download/{{version}}/nvim-linux-x86_64.tar.gz"
+  tar -xzvf /tmp/nvim.tar.gz -C /tmp
+  rm -rf /tmp/nvim
+  mv /tmp/nvim-linux-x86_64 /tmp/nvim
+  sudo mkdir -p /usr/local/stow
+  sudo cp -r /tmp/nvim /usr/local/stow
+  cd /usr/local/stow
+  sudo stow nvim
