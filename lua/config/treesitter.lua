@@ -29,6 +29,7 @@ end
 -- the parser if necessary
 local on_any_file_type = function()
   local ft = vim.bo.filetype
+  pcall(vim.treesitter.start)
 
   if aliases[ft] ~= nil then
     ft = aliases[ft]
