@@ -31,19 +31,6 @@ return {
   },
 
   {
-    "pwntester/octo.nvim",
-    cmd = "Octo",
-    config = function()
-      require("octo").setup({
-        default_remote = { "upstream", "origin" },
-        suppress_missing_scope = {
-          projects_v2 = true,
-        },
-      })
-    end,
-  },
-
-  {
     "ruifm/gitlinker.nvim",
     keys = {
       {
