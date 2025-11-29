@@ -46,11 +46,14 @@ install-neovim-latest-manually:
 # Works for x86_86 only
 install-neovim-manually version:
   #!/usr/bin/env bash
-  curl -L -o /tmp/nvim.tar.gz  "https://github.com/neovim/neovim/releases/download/{{version}}/nvim-linux-x86_64.tar.gz"
-  tar -xzvf /tmp/nvim.tar.gz -C /tmp
-  rm -rf /tmp/nvim
-  mv /tmp/nvim-linux-x86_64 /tmp/nvim
-  sudo mkdir -p /usr/local/stow
-  sudo cp -r /tmp/nvim /usr/local/stow
-  cd /usr/local/stow
+  DOWNLOAD_DIR=/tmp
+  INSTALL_DIR=/usr/local/stow
+
+  curl -L -o "$DOWNLOAD_DIR/nvim.tar.gz"  "https://github.com/neovim/neovim/releases/download/{{version}}/nvim-linux-x86_64.tar.gz"
+  tar -xzvf "$DOWNLOAD_DIR/nvim.tar.gz" -C "$DOWNLOAD_DIR"
+  rm -rf "$DOWNLOAD_DIR/nvim"
+  mv "$DOWNLOAD_DIR/nvim-linux-x86_64" "$DOWNLOAD_DIR/nvim"
+  sudo mkdir -p "$INSTALL_DIR"
+  sudo cp -r "$DOWNLOAD_DIR"/nvim "$INSTALL_DIR"
+  cd "$INSTALL_DIR"
   sudo stow nvim
