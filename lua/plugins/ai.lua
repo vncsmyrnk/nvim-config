@@ -30,6 +30,17 @@ return {
   {
     "olimorris/codecompanion.nvim",
     opts = {
+      adapters = {
+        acp = {
+          gemini_cli = function()
+            return require("codecompanion.adapters").extend("gemini_cli", {
+              defaults = {
+                auth_method = "oauth-personal",
+              },
+            })
+          end,
+        },
+      },
       strategies = {
         chat = {
           adapter = {
