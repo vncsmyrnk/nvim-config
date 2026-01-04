@@ -180,6 +180,7 @@ return {
           theme = theme,
           component_separators = "",
           section_separators = { left = "", right = "" },
+          globalstatus = true,
         },
         sections = {
           lualine_a = {
