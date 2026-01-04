@@ -35,6 +35,11 @@ local on_any_file_type = function()
     ft = aliases[ft]
   end
 
+  local available_parsers = ts.get_available()
+  if available_parsers[ft] == nil then
+    return
+  end
+
   ts.install({ ft }):await(function()
     setup_treesitter(ft)
   end)
