@@ -191,11 +191,11 @@ return {
         desc = "fzf: keymaps",
       },
       {
-        "<leader>fgd",
+        "<leader>fgs",
         function()
-          require("fzf-lua").git_diff()
+          require("fzf-lua").git_status()
         end,
-        desc = "fzf: git diff",
+        desc = "fzf: git status",
       },
       {
         "<leader>fgh",
