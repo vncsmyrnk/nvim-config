@@ -1,3 +1,4 @@
+local session = require("config.session")
 local set = vim.keymap.set
 
 set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy text" })
@@ -7,8 +8,9 @@ set("n", "<leader>h", "<cmd>noh<cr>", { desc = "Clear highlight" })
 set("n", "<leader>qq", "<cmd>q<cr>", { desc = "Close buffer" })
 set("n", "<leader>qp", "<cmd>b#|bd#<cr>", { desc = "Close current buffer and go to previous" })
 set("n", "<leader>qb", "<cmd>%bd|e#<cr>", { desc = "Close all buffers but the current one" })
-set("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Close session" })
-set("n", "<leader>qA", "<cmd>qa!<cr>", { desc = "Close session without saving" })
+set("n", "<leader>qa", session.save_and_quit, { desc = "Close session" })
+set("n", "<leader>qA", session.save_and_force_quit, { desc = "Close session without saving" })
+set("n", "<leader>qR", session.load, { desc = "Restore last session" })
 
 -- Moving lines around
 -- <cmd> does not preserve the visual selection or range. Silent avoids the cmdline of being focused
