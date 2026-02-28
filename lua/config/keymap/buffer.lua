@@ -1,7 +1,8 @@
 local session = require("config.session")
 local set = vim.keymap.set
 
-set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy text" })
+set("v", "<leader>y", '"+y', { desc = "Copy selection to system clipboard" })
+set("n", "<leader>Y", '"+Y', { desc = "Copy the rest of the line to system clipboard" })
 set("n", "<leader><tab>", "<cmd>b#<cr>", { desc = "Last buffer" })
 set("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
 set("n", "<leader>h", "<cmd>noh<cr>", { desc = "Clear highlight" })
