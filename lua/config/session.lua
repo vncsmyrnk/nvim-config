@@ -11,7 +11,10 @@ local save_and_quit = function(force)
     vim.cmd("qa!")
     return
   end
-  vim.cmd("qa")
+  local ok, err = pcall(vim.cmd, "qa")
+  if not ok then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
 end
 
 -- saves the session to be later recovery and exit neovim
