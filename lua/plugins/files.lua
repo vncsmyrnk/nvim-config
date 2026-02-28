@@ -84,7 +84,7 @@ return {
         "<leader>fp",
         function()
           local paths = os.getenv("UTILS_PROJECTS_DIR") or string.format("%s/%s", os.getenv("HOME"), "workspace")
-          local cmd = string.format("fd . %s --max-depth 1 --type d", paths)
+          local cmd = string.format("fd . %s --max-depth 1 --type d; fd . $HOME --max-depth 1 --type d", paths)
           local select_action = function(selected)
             local fzf_path = require("fzf-lua.path")
             local file = fzf_path.entry_to_file(selected[1], {}, false)
