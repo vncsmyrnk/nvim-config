@@ -34,6 +34,12 @@ return {
             return os.getenv("DB_EXTRA_URL")
           end,
         },
+        {
+          name = "sqlite",
+          url = function()
+            return os.getenv("DB_SQLITE_DSN")
+          end,
+        },
       }
     end,
     keys = {
