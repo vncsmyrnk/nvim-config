@@ -142,6 +142,13 @@ return {
         desc = "fzf: open buffers",
       },
       {
+        "<leader>fu",
+        function()
+          require("fzf-lua").undotree()
+        end,
+        desc = "fzf: open undotree",
+      },
+      {
         "<leader>fd",
         function()
           require("fzf-lua").diagnostics_document()
