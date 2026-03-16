@@ -244,7 +244,7 @@ return {
               action = "FzfLua files follow=true cwd=.",
               key = "f",
             },
-            { desc = "⎚ Empty file", group = "DashboardMruTitle", action = "e /tmp/newfile", key = "e" },
+            { desc = "⎚ Empty file", group = "DashboardMruTitle", action = "enew", key = "e" },
             {
               desc = "󰜉 Restore last session",
               group = "DashboardShortCutIcon",
