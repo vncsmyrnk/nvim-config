@@ -17,11 +17,14 @@ local run = function(opts)
   vim.cmd(string.format("silent :%d,%dw !%s", opts.line1, opts.line2, shell))
   vim.cmd("redir END")
 
-  if not output_bufnr then
-    local current_bufnr = vim.api.nvim_get_current_buf()
-    output_bufnr = vim.cmd("belowright split " .. output_filename)
-    vim.api.nvim_set_current_win(vim.fn.bufwinid(current_bufnr))
+  if output_bufnr and #vim.fn.win_findbuf(output_bufnr) > 0 then
+    return
   end
+
+  local current_bufnr = vim.api.nvim_get_current_buf()
+  vim.cmd("belowright split " .. output_filename)
+  output_bufnr = vim.api.nvim_get_current_buf()
+  vim.api.nvim_set_current_win(vim.fn.bufwinid(current_bufnr))
 end
 
 vim.api.nvim_create_user_command("CustomShellRun", run, { range = "%" })
