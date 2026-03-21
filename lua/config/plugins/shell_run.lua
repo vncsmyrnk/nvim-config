@@ -24,6 +24,7 @@ local run = function(opts)
   local current_bufnr = vim.api.nvim_get_current_buf()
   vim.cmd("belowright split " .. output_filename)
   output_bufnr = vim.api.nvim_get_current_buf()
+  vim.api.nvim_win_set_height(vim.fn.bufwinid(output_bufnr), math.floor(vim.o.lines * 0.2))
   vim.api.nvim_set_current_win(vim.fn.bufwinid(current_bufnr))
 end
 
