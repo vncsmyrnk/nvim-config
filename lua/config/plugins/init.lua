@@ -5,4 +5,5 @@
 ---@field args string The args passed to the command
 
 require("config.plugins.shell_run")
+require("config.plugins.term_run")
 require("config.plugins.pipe_file_to_cmd")

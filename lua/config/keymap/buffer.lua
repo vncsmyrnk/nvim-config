@@ -51,3 +51,4 @@ set(
   ":CustomShellRun<cr>",
   { silent = true, desc = "Executes the current buffer using $SHELL" }
 )
+set("n", "<A-;>", "<cmd>CustomTermRunFile<cr>", { desc = "Executes the current file in a term split" })
