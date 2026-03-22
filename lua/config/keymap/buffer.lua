@@ -45,4 +45,9 @@ set("n", "<A-t>", "<C-w>t", { desc = "Go to window on the top left" })
 set("n", "<A-b>", "<C-w>b", { desc = "Go to window on the right bottom" })
 set("n", "<A-o>", "<C-w>o", { desc = "Makes the current window the only one visible" })
 set("n", "<A-q>", "<C-w>q", { desc = "Closes current window" })
-set({ "n", "v" }, "<A-enter>", ":CustomShellRun<cr>", { silent = true, desc = "Executes the current buffer in bash" })
+set(
+  { "n", "v" },
+  "<A-enter>",
+  ":CustomShellRun<cr>",
+  { silent = true, desc = "Executes the current buffer using $SHELL" }
+)

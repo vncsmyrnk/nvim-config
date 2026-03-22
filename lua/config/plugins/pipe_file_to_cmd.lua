@@ -9,7 +9,7 @@ local output_filename = vim.fn.tempname()
 --- Executes the cmd on the given range and outputs to a split buffer.
 ---@param opts UserCommandOpts
 local run = function(opts)
-  utils.run_with_redirect(opts.args, output_filename, { line1 = opts.line1, line2 = opts.line2 })
+  utils.pipe_file_to_cmd(opts.args, output_filename, { line1 = opts.line1, line2 = opts.line2 })
   if output_bufnr and #vim.fn.win_findbuf(output_bufnr) > 0 then
     return
   end
@@ -17,5 +17,5 @@ local run = function(opts)
 end
 
 local command_opts = { range = "%", nargs = "+" }
-vim.api.nvim_create_user_command("CustomCommandRun", run, command_opts)
+vim.api.nvim_create_user_command("CustomPipeFileToCmd", run, command_opts)
 vim.api.nvim_create_user_command("CC", run, command_opts)

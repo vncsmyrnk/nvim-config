@@ -5,11 +5,11 @@ local M = {}
 ---@field line1? integer
 ---@field line2? integer
 
---- Executes a cmd silently redirecting its output to a file
+--- Executes a cmd silently piping the current file as stdin and redirecting its output to a file
 ---@param cmd string
 ---@param filename string
 ---@param opts RunWithRedirectOpts
-function M.run_with_redirect(cmd, filename, opts)
+function M.pipe_file_to_cmd(cmd, filename, opts)
   local target_cmd = string.format("silent :w !%s", cmd)
   if opts.line1 and opts.line2 then
     target_cmd = string.format("silent :%d,%dw !%s", opts.line1, opts.line2, cmd)
