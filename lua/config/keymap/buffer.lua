@@ -52,3 +52,4 @@ set(
   { silent = true, desc = "Executes the current buffer using $SHELL" }
 )
 set("n", "<A-;>", "<cmd>CustomTermRunFile<cr>", { desc = "Executes the current file in a term split" })
+set("n", "<A-m>", "<cmd>CustomPipeFileToCmd messages<cr>", { desc = "Executes the current file in a term split" })
