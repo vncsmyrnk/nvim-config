@@ -1,4 +1,4 @@
-local utils = require("config.plugins.utils")
+local utils = require("config.utils")
 
 ---@type integer
 local output_bufnr = nil

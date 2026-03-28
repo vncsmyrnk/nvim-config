@@ -1,4 +1,4 @@
-local utils = require("config.plugins.utils")
+local utils = require("config.utils")
 
 --- Executes the current file in a term split.
 local run = function()
