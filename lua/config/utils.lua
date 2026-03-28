@@ -65,15 +65,28 @@ end
 ---@class RunWithRedirectOpts
 ---@field line1? integer
 ---@field line2? integer
+---@field shell? boolean
+
+---@type RunWithRedirectOpts
+local run_with_redirect_default_opts = {
+  shell = true,
+}
 
 --- Executes a cmd silently piping the current file as stdin and redirecting its output to a file
 ---@param cmd string
 ---@param filename string
 ---@param opts RunWithRedirectOpts
 function M.pipe_file_to_cmd(cmd, filename, opts)
-  local target_cmd = string.format("silent :w !%s", cmd)
-  if opts.line1 and opts.line2 then
-    target_cmd = string.format("silent :%d,%dw !%s", opts.line1, opts.line2, cmd)
+  opts = vim.tbl_deep_extend("force", run_with_redirect_default_opts, opts)
+  ---@type string
+  local target_cmd
+  if opts.shell then
+    target_cmd = string.format("silent :w !%s", cmd)
+    if opts.line1 and opts.line2 then
+      target_cmd = string.format("silent :%d,%dw !%s", opts.line1, opts.line2, cmd)
+    end
+  else
+    target_cmd = string.format("silent %s", cmd)
   end
   vim.cmd("redir! > " .. filename)
   vim.cmd(target_cmd)

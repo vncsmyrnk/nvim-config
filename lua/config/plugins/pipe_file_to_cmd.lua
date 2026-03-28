@@ -9,7 +9,17 @@ local output_filename = vim.fn.tempname()
 --- Executes the cmd on the given range and outputs to a split buffer.
 ---@param opts UserCommandOpts
 local run = function(opts)
-  utils.pipe_file_to_cmd(opts.args, output_filename, { line1 = opts.line1, line2 = opts.line2 })
+  ---@type RunWithRedirectOpts
+  local pipe_cmd_opts = { line1 = opts.line1, line2 = opts.line2, shell = false }
+  ---@type string
+  local cmd = opts.args
+
+  if opts.args:sub(1, 1) == "!" then
+    cmd = opts.args:sub(2)
+    pipe_cmd_opts.shell = true
+  end
+
+  utils.pipe_file_to_cmd(cmd, output_filename, pipe_cmd_opts)
   if output_bufnr and #vim.fn.win_findbuf(output_bufnr) > 0 then
     return
   end
