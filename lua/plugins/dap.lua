@@ -93,6 +93,22 @@ return {
           host = "127.0.0.1",
         },
       }
+
+      dap.configurations.zig = {
+        {
+          name = "Launch",
+          type = "lldb",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin/", "file")
+          end,
+          args = function()
+            local input = vim.fn.input("Args: ")
+            return vim.split(input, " ", { trimempty = true })
+          end,
+          cwd = "${workspaceFolder}",
+        },
+      }
     end,
     keys = {
       {
