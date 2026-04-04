@@ -1,8 +1,15 @@
 ---@class Utils
 local M = {}
 
-local tui_term_close_group = vim.api.nvim_create_augroup("TermCloseGroup", { clear = true })
+local tui_term_close_group =
+  vim.api.nvim_create_augroup("TermCloseGroup", { clear = true })
 local api = vim.api
+
+--- tracks the current tab index before a TUI is open
+--- useful to switch back to the last accesed tab when
+--- the TUI is closed.
+---@type integer
+TAB_INDEX_BEFORE_TUI = 0
 
 --- executes a function in a new right vsplit
 ---@param callback function
@@ -38,6 +45,7 @@ function M.on_a_new_tab(callback)
   local callback_fn = callback
   if type(callback) == "string" then
     callback_fn = function()
+      TAB_INDEX_BEFORE_TUI = vim.api.nvim_get_current_tabpage()
       vim.cmd(string.format("$tab term %s", callback))
     end
   end
@@ -49,6 +57,8 @@ function M.on_a_new_tab(callback)
       buffer = 0,
       callback = function()
         vim.api.nvim_buf_delete(0, { force = true })
+        -- Goes back to previously accessed tab
+        vim.cmd("tabnext " .. TAB_INDEX_BEFORE_TUI)
       end,
     })
   end
@@ -83,7 +93,8 @@ function M.pipe_file_to_cmd(cmd, filename, opts)
   if opts.shell then
     target_cmd = string.format("silent :w !%s", cmd)
     if opts.line1 and opts.line2 then
-      target_cmd = string.format("silent :%d,%dw !%s", opts.line1, opts.line2, cmd)
+      target_cmd =
+        string.format("silent :%d,%dw !%s", opts.line1, opts.line2, cmd)
     end
   else
     target_cmd = string.format("silent %s", cmd)
@@ -115,7 +126,10 @@ function M.open_output_brhsplit(filename, opts)
 
   vim.cmd("belowright split " .. filename)
   local output_bufnr = vim.api.nvim_get_current_buf()
-  vim.api.nvim_win_set_height(vim.fn.bufwinid(output_bufnr), math.floor(vim.o.lines * opts.height))
+  vim.api.nvim_win_set_height(
+    vim.fn.bufwinid(output_bufnr),
+    math.floor(vim.o.lines * opts.height)
+  )
 
   if opts.inherit_filetype then
     vim.bo[output_bufnr].filetype = vim.bo[current_bufnr].filetype
@@ -156,9 +170,14 @@ local execute_in_term_brhsplit_term_default_opts = {
 ---@param opts ExecuteInTermOpts
 ---@param term_opts? ExecuteInTermTermOpts
 function M.execute_in_term_brhsplit(opts, term_opts)
-  opts = vim.tbl_deep_extend("force", execute_in_term_brhsplit_default_opts, opts)
+  opts =
+    vim.tbl_deep_extend("force", execute_in_term_brhsplit_default_opts, opts)
   local optional_term_opts = term_opts
-    or vim.tbl_deep_extend("force", execute_in_term_brhsplit_term_default_opts, term_opts)
+    or vim.tbl_deep_extend(
+      "force",
+      execute_in_term_brhsplit_term_default_opts,
+      term_opts
+    )
   local current_bufnr = vim.api.nvim_get_current_buf()
 
   local old_ignore = vim.o.eventignore
@@ -169,7 +188,10 @@ function M.execute_in_term_brhsplit(opts, term_opts)
   local cmd = string.format("belowright %s %%", opts.cmd)
   vim.cmd(cmd)
   local bufnr = vim.api.nvim_get_current_buf()
-  vim.api.nvim_win_set_height(vim.fn.bufwinid(bufnr), math.floor(vim.o.lines * opts.height))
+  vim.api.nvim_win_set_height(
+    vim.fn.bufwinid(bufnr),
+    math.floor(vim.o.lines * opts.height)
+  )
 
   vim.o.eventignore = old_ignore
   vim.opt_local.number = optional_term_opts.number
