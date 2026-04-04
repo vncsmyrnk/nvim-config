@@ -28,3 +28,11 @@ set(
   { desc = "Moves tab to the left" }
 )
 set("n", "<leader>tq", "<cmd>tabclose<cr>", { desc = "Closes current tab" })
+
+-- Maps <A-{N}> to open tabs
+for i = 1, 9 do
+  set("n", string.format("<A-%s>", i), string.format("%sgt", i), {
+    noremap = true,
+    desc = "Go to tab " .. i,
+  })
+end
