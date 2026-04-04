@@ -22,7 +22,6 @@ To work properly this repo should be cloned/copied to `~/.config/nvim`.
 - [gh](https://cli.github.com/)
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [luarocks](https://luarocks.org/)
-- xclip
 
 ## Install
 
