@@ -1,4 +1,4 @@
-local utils = require("config.utils")
+local utils = require("lib.utils")
 
 local lsp = vim.lsp.buf
 local set = vim.keymap.set
@@ -17,7 +17,22 @@ set({ "n", "x" }, "<F3>", function()
   lsp.format({ async = true })
 end, { desc = "LSP: format buffer" })
 
-set("n", "gpd", utils.on_existing_rvsplit(lsp.definition), { desc = "LSP: definition in the right split" })
-set("n", "gPd", utils.on_new_rvsplit(lsp.definition), { desc = "LSP: definition in a split" })
+set(
+  "n",
+  "gpd",
+  utils.on_existing_rvsplit(lsp.definition),
+  { desc = "LSP: definition in the right split" }
+)
+set(
+  "n",
+  "gPd",
+  utils.on_new_rvsplit(lsp.definition),
+  { desc = "LSP: definition in a split" }
+)
 
-set("n", "<leader>cL", "<cmd>bufdo LspRestart<cr>", { desc = "LSP: Restart LSP on all open buffers" })
+set(
+  "n",
+  "<leader>cL",
+  "<cmd>bufdo LspRestart<cr>",
+  { desc = "LSP: Restart LSP on all open buffers" }
+)

@@ -16,13 +16,13 @@ return {
         ["Next tab"] = {
           ")",
           function()
-            require("config.kulala").next_winbar_tab()
+            require("lib.kulala").next_winbar_tab()
           end,
         },
         ["Previous tab"] = {
           "(",
           function()
-            require("config.kulala").previous_winbar_tab()
+            require("lib.kulala").previous_winbar_tab()
           end,
         },
       },

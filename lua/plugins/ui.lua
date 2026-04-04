@@ -1,4 +1,4 @@
-local utils = require("config.utils")
+local utils = require("lib.utils")
 
 return {
   {
@@ -60,7 +60,18 @@ return {
             return table.insert(msg, v.msg) or not v.done
           end, p)
 
-          local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+          local spinner = {
+            "⠋",
+            "⠙",
+            "⠹",
+            "⠸",
+            "⠼",
+            "⠴",
+            "⠦",
+            "⠧",
+            "⠇",
+            "⠏",
+          }
           vim.notify(table.concat(msg, "\n"), "info", {
             id = "lsp_progress",
             title = client.name,
@@ -152,7 +163,8 @@ return {
     event = "VeryLazy",
     config = function()
       local theme = require("lualine.themes.moonfly")
-      local modes = { "normal", "insert", "visual", "replace", "command", "inactive" }
+      local modes =
+        { "normal", "insert", "visual", "replace", "command", "inactive" }
       for _, mode in ipairs(modes) do
         if theme[mode] ~= nil and theme[mode].c ~= nil then
           theme[mode].c.bg = "transparent"
@@ -168,7 +180,12 @@ return {
           return ""
         end
         local searchcount = vim.fn.searchcount({ maxcount = 9999 })
-        return last_search .. " (" .. searchcount.current .. "/" .. searchcount.total .. ")"
+        return last_search
+          .. " ("
+          .. searchcount.current
+          .. "/"
+          .. searchcount.total
+          .. ")"
       end
 
       local function line_count()
@@ -196,13 +213,14 @@ return {
             {
               function()
                 if utils.plugin_loaded("kulala.nvim") then
-                  local selected_env = require("kulala").get_selected_env()
+                  local selected_env = require("lib.kulala").get_selected_env()
                   return string.format("kenv: %s", selected_env)
                 end
                 return ""
               end,
               cond = function()
-                local filetype = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+                local filetype =
+                  vim.api.nvim_get_option_value("filetype", { buf = 0 })
                 local supported_fts = { "http", "text.kulala_ui" }
                 return vim.tbl_contains(supported_fts, filetype)
               end,
@@ -231,7 +249,12 @@ return {
             enable = true,
           },
           shortcut = {
-            { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
+            {
+              desc = "󰊳 Update",
+              group = "@property",
+              action = "Lazy update",
+              key = "u",
+            },
             {
               desc = " Config files",
               group = "Number",
@@ -244,16 +267,26 @@ return {
               action = "FzfLua files follow=true cwd=.",
               key = "f",
             },
-            { desc = "⎚ Empty file", group = "DashboardMruTitle", action = "enew", key = "e" },
+            {
+              desc = "⎚ Empty file",
+              group = "DashboardMruTitle",
+              action = "enew",
+              key = "e",
+            },
             {
               desc = "󰜉 Restore last session",
               group = "DashboardShortCutIcon",
-              action = require("config.session").load,
+              action = require("lib.session").load,
               key = "r",
             },
           },
           packages = { enable = true },
-          project = { enable = true, limit = 8, label = "Recent projects", action = "FzfLua files cwd=" },
+          project = {
+            enable = true,
+            limit = 8,
+            label = "Recent projects",
+            action = "FzfLua files cwd=",
+          },
           mru = { limit = 10, label = "Recent files", cwd_only = false },
           footer = {},
         },

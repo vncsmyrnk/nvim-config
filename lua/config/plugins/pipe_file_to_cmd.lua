@@ -1,4 +1,4 @@
-local utils = require("config.utils")
+local utils = require("lib.utils")
 
 ---@type integer
 local output_bufnr = nil
@@ -10,7 +10,8 @@ local output_filename = vim.fn.tempname()
 ---@param opts UserCommandOpts
 local run = function(opts)
   ---@type RunWithRedirectOpts
-  local pipe_cmd_opts = { line1 = opts.line1, line2 = opts.line2, shell = false }
+  local pipe_cmd_opts =
+    { line1 = opts.line1, line2 = opts.line2, shell = false }
   ---@type string
   local cmd = opts.args
 
@@ -23,7 +24,10 @@ local run = function(opts)
   if output_bufnr and #vim.fn.win_findbuf(output_bufnr) > 0 then
     return
   end
-  utils.open_output_brhsplit(output_filename, { inherit_filetype = true, focus_current_buffer = true, height = 0.3 })
+  utils.open_output_brhsplit(
+    output_filename,
+    { inherit_filetype = true, focus_current_buffer = true, height = 0.3 }
+  )
 end
 
 local command_opts = { range = "%", nargs = "+" }

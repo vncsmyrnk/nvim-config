@@ -1,4 +1,4 @@
-local utils = require("config.utils")
+local utils = require("lib.utils")
 
 ---@type integer
 local output_bufnr = nil
@@ -15,7 +15,11 @@ local run = function(opts)
     return
   end
 
-  utils.pipe_file_to_cmd(shell, output_filename, { line1 = opts.line1, line2 = opts.line2 })
+  utils.pipe_file_to_cmd(
+    shell,
+    output_filename,
+    { line1 = opts.line1, line2 = opts.line2 }
+  )
   if output_bufnr and #vim.fn.win_findbuf(output_bufnr) > 0 then
     return
   end
