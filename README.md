@@ -1,5 +1,5 @@
-![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)
-![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)
+![NeoVim](https://img.shields.io/badge/NeoVim-darkgreen?style=plastic&logo=neovim)
+![Lua](https://img.shields.io/badge/Lua-darkblue?style=plastic&logo=lua)
 
 # myconfig.nvim
 
