@@ -117,12 +117,15 @@ return {
       {
         "<leader>fa",
         function()
+          local fzf = require("fzf-lua")
           local sep = package.config:sub(1, 1)
-          require("fzf-lua").live_grep({
+          fzf.live_grep({
             cwd_only = vim.fn.getcwd() .. sep,
-            no_ignore = true,
-            hidden = true,
             follow = true,
+            actions = {
+              -- The default mapping (`alt-h`) is already used
+              ["alt-."] = fzf.actions.toggle_hidden,
+            },
           })
         end,
         desc = "fzf: live grep in cwd",
