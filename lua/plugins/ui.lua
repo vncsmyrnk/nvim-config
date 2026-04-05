@@ -115,6 +115,7 @@ return {
         { "<leader>m", group = "Markdown" },
         { "<leader>n", group = "Snacks notifier" },
         { "<leader>o", group = "Oil" },
+        { "<leader>p", group = "Repl" },
         { "<leader>q", group = "Quit/session" },
         { "<leader>r", group = "Rest" },
         { "<leader>s", group = "SQL" },
