@@ -116,9 +116,18 @@ return {
       {
         "<M-b>",
         function()
+          require("fzf-lua").buffers({
+            cwd_only = true,
+          })
+        end,
+        desc = "fzf: open buffers for the cwd",
+      },
+      {
+        "<M-B>",
+        function()
           require("fzf-lua").buffers()
         end,
-        desc = "fzf: open buffers",
+        desc = "fzf: list all opened buffers",
       },
       {
         "<M-o>",
