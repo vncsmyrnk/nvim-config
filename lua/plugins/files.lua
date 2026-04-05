@@ -138,17 +138,23 @@ return {
             "fd . %s --max-depth 1 --type d; fd . $HOME --max-depth 1 --type d",
             paths
           )
+
           local select_action = function(selected)
             local fzf_path = require("fzf-lua.path")
             local file = fzf_path.entry_to_file(selected[1], {}, false)
             vim.cmd(string.format("tcd %s", file.path))
+          end
+          local new_tab_action = function(selected)
+            local fzf_path = require("fzf-lua.path")
+            local file = fzf_path.entry_to_file(selected[1], {}, false)
+            vim.cmd(string.format("tabnew | tcd %s", file.path))
           end
 
           require("fzf-lua").files({
             cmd = cmd,
             cwd_prompt = false,
             cwd_header = false,
-            actions = { ["enter"] = select_action },
+            actions = { ["enter"] = select_action, ["ctrl-v"] = new_tab_action },
           })
         end,
         desc = "fzf: change working directory",
