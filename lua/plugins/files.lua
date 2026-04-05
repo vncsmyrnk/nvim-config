@@ -114,7 +114,7 @@ return {
         desc = "fzf: project files",
       },
       {
-        "<M-b>",
+        "<M-i>",
         function()
           require("fzf-lua").buffers({
             cwd_only = true,
@@ -123,7 +123,7 @@ return {
         desc = "fzf: open buffers for the cwd",
       },
       {
-        "<M-B>",
+        "<M-b>",
         function()
           require("fzf-lua").buffers()
         end,
