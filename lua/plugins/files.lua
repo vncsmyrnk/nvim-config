@@ -53,6 +53,20 @@ return {
           ["ctrl-q"] = "select-all+accept",
         },
       },
+      grep = {
+        follow = true,
+      },
+      actions = {
+        files = {
+          true,
+          ["alt-."] = function(_, opts)
+            require("fzf-lua").actions.toggle_hidden(_, opts)
+          end,
+          ["alt-,"] = function(_, opts)
+            require("fzf-lua").actions.toggle_ignore(_, opts)
+          end,
+        },
+      },
     },
     keys = {
       {
@@ -61,6 +75,13 @@ return {
           require("fzf-lua").git_files()
         end,
         desc = "fzf: git files",
+      },
+      {
+        "<M-f>",
+        function()
+          require("fzf-lua").files()
+        end,
+        desc = "fzf: project files",
       },
       {
         "<leader>F",
@@ -72,13 +93,6 @@ return {
           })
         end,
         desc = "fzf: user files",
-      },
-      {
-        "<leader>ff",
-        function()
-          require("fzf-lua").files({ hidden = true, no_ignore = true })
-        end,
-        desc = "fzf: project files",
       },
       {
         "<leader>fp",
@@ -121,11 +135,6 @@ return {
           local sep = package.config:sub(1, 1)
           fzf.live_grep({
             cwd_only = vim.fn.getcwd() .. sep,
-            follow = true,
-            actions = {
-              -- The default mapping (`alt-h`) is already used
-              ["alt-."] = fzf.actions.toggle_hidden,
-            },
           })
         end,
         desc = "fzf: live grep in cwd",
