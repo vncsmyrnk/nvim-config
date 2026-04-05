@@ -1,4 +1,4 @@
----@class Tab
+---@class TabLine
 local M = {}
 
 --- returns a valid string to be set as neovim's tabline
