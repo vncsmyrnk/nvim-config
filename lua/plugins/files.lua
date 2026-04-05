@@ -56,7 +56,7 @@ return {
     },
     keys = {
       {
-        "<C-p>",
+        "<M-p>",
         function()
           require("fzf-lua").git_files()
         end,
