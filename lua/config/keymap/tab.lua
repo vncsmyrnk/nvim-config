@@ -38,4 +38,8 @@ for i = 1, 9 do
     noremap = true,
     desc = "Go to tab " .. i,
   })
+  set("t", string.format("<A-%s>", i), string.format([[<C-\><C-N>%sgt]], i), {
+    noremap = true,
+    desc = "Go to tab " .. i,
+  })
 end
