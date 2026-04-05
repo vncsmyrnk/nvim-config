@@ -77,6 +77,17 @@ return {
         desc = "fzf: git files",
       },
       {
+        "<M-g>",
+        function()
+          local fzf = require("fzf-lua")
+          local sep = package.config:sub(1, 1)
+          fzf.live_grep({
+            cwd_only = vim.fn.getcwd() .. sep,
+          })
+        end,
+        desc = "fzf: live grep in cwd",
+      },
+      {
         "<M-f>",
         function()
           require("fzf-lua").files()
@@ -127,17 +138,6 @@ return {
           })
         end,
         desc = "fzf: change working directory",
-      },
-      {
-        "<leader>fa",
-        function()
-          local fzf = require("fzf-lua")
-          local sep = package.config:sub(1, 1)
-          fzf.live_grep({
-            cwd_only = vim.fn.getcwd() .. sep,
-          })
-        end,
-        desc = "fzf: live grep in cwd",
       },
       {
         "<leader>fA",
