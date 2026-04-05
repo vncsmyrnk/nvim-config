@@ -100,7 +100,7 @@ return {
         desc = "fzf: live grep in cwd",
       },
       {
-        "<M-[>",
+        "<M-y>",
         function()
           require("fzf-lua").tabs()
         end,
