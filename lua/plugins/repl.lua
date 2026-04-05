@@ -19,9 +19,12 @@ return {
         visual_send = "<A-enter>",
         send_file = "<A-enter>",
         send_line = "<A-;>",
-        exit = "<space>pq",
         clear = "<space>pl",
       },
+    },
+    keys = {
+      { "<leader>po", "<cmd>IronRepl<cr>", desc = "Repl: open UI" },
+      { "<leader>pq", "<cmd>IronHide<cr>", desc = "Repl: hide UI" },
     },
   },
 }
