@@ -9,6 +9,9 @@ return {
           sh = {
             command = { "zsh" },
           },
+          lua = {
+            command = { "lua" },
+          },
         },
         repl_open_cmd = "vertical botright 80 split",
       },
