@@ -47,6 +47,7 @@ function M.on_a_new_tab(callback)
     callback_fn = function()
       TAB_INDEX_BEFORE_TUI = vim.api.nvim_get_current_tabpage()
       vim.cmd(string.format("$tab term %s", callback))
+      vim.cmd("startinsert")
     end
   end
 
@@ -59,6 +60,7 @@ function M.on_a_new_tab(callback)
         vim.api.nvim_buf_delete(0, { force = true })
         -- Goes back to previously accessed tab
         vim.cmd("tabnext " .. TAB_INDEX_BEFORE_TUI)
+        vim.cmd("startinsert")
       end,
     })
   end
