@@ -100,7 +100,7 @@ return {
         desc = "fzf: live grep in cwd",
       },
       {
-        "<M-t>",
+        "<M-[>",
         function()
           require("fzf-lua").tabs()
         end,
@@ -114,18 +114,14 @@ return {
         desc = "fzf: project files",
       },
       {
-        "<leader>F",
+        "<M-b>",
         function()
-          require("fzf-lua").files({
-            cwd = "~",
-            hidden = true,
-            no_ignore = true,
-          })
+          require("fzf-lua").buffers()
         end,
-        desc = "fzf: user files",
+        desc = "fzf: open buffers",
       },
       {
-        "<leader>fp",
+        "<M-o>",
         function()
           local paths = os.getenv("UTILS_PROJECTS_DIR")
             or string.format("%s/%s", os.getenv("HOME"), "workspace")
@@ -149,6 +145,17 @@ return {
         desc = "fzf: change working directory",
       },
       {
+        "<leader>F",
+        function()
+          require("fzf-lua").files({
+            cwd = "~",
+            hidden = true,
+            no_ignore = true,
+          })
+        end,
+        desc = "fzf: user files",
+      },
+      {
         "<leader>fc",
         function()
           local paths = os.getenv("UTILS_CUSTOM_DOCS_DIR")
@@ -169,13 +176,6 @@ return {
           require("fzf-lua").live_grep_glob()
         end,
         desc = "fzf: live grep",
-      },
-      {
-        "<leader>fb",
-        function()
-          require("fzf-lua").buffers()
-        end,
-        desc = "fzf: open buffers",
       },
       {
         "<leader>fu",

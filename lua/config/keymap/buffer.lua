@@ -108,12 +108,6 @@ set("n", "<A-k>", "<C-w>k", { desc = "Go to window above" })
 set("n", "<A-l>", "<C-w>l", { desc = "Go to window on the right" })
 set("n", "<A-t>", "<C-w>t", { desc = "Go to window on the top left" })
 set("n", "<A-b>", "<C-w>b", { desc = "Go to window on the right bottom" })
-set(
-  "n",
-  "<A-o>",
-  "<C-w>o",
-  { desc = "Makes the current window the only one visible" }
-)
 set("n", "<A-q>", "<C-w>q", { desc = "Closes current window" })
 set(
   { "n", "v" },
