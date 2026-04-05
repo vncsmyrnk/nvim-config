@@ -247,6 +247,9 @@ return {
         config = {
           week_header = {
             enable = true,
+            append = {
+              vim.version().build,
+            },
           },
           shortcut = {
             {
