@@ -1,7 +1,7 @@
 return {
   {
     "Vigemus/iron.nvim",
-    cmd = "IronRepl",
+    cmd = { "IronRepl", "IronWatch" },
     opts = {
       config = {
         scratch_repl = true,
