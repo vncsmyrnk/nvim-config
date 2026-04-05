@@ -24,9 +24,21 @@ return {
       },
     },
     keys = {
-      { "<leader>of", "<cmd>Oil --float<cr>", desc = "Oil: opens current dir in a float window" },
-      { "<leader>ot", "<cmd>tab Oil<cr>", desc = "Oil: opens current dir in a new tab" },
-      { "<leader>ov", "<cmd>vertical Oil<cr>", desc = "Oil: opens current dir in a vertical split" },
+      {
+        "<leader>of",
+        "<cmd>Oil --float<cr>",
+        desc = "Oil: opens current dir in a float window",
+      },
+      {
+        "<leader>ot",
+        "<cmd>tab Oil<cr>",
+        desc = "Oil: opens current dir in a new tab",
+      },
+      {
+        "<leader>ov",
+        "<cmd>vertical Oil<cr>",
+        desc = "Oil: opens current dir in a vertical split",
+      },
     },
     lazy = false,
   },
@@ -115,8 +127,12 @@ return {
       {
         "<leader>fp",
         function()
-          local paths = os.getenv("UTILS_PROJECTS_DIR") or string.format("%s/%s", os.getenv("HOME"), "workspace")
-          local cmd = string.format("fd . %s --max-depth 1 --type d; fd . $HOME --max-depth 1 --type d", paths)
+          local paths = os.getenv("UTILS_PROJECTS_DIR")
+            or string.format("%s/%s", os.getenv("HOME"), "workspace")
+          local cmd = string.format(
+            "fd . %s --max-depth 1 --type d; fd . $HOME --max-depth 1 --type d",
+            paths
+          )
           local select_action = function(selected)
             local fzf_path = require("fzf-lua.path")
             local file = fzf_path.entry_to_file(selected[1], {}, false)
@@ -135,7 +151,8 @@ return {
       {
         "<leader>fc",
         function()
-          local paths = os.getenv("UTILS_CUSTOM_DOCS_DIR") or string.format("%s/%s", os.getenv("HOME"), "Documents")
+          local paths = os.getenv("UTILS_CUSTOM_DOCS_DIR")
+            or string.format("%s/%s", os.getenv("HOME"), "Documents")
           local cmd = string.format("fd . %s --unrestricted --type f", paths)
 
           require("fzf-lua").files({
