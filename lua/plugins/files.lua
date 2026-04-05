@@ -88,6 +88,13 @@ return {
         desc = "fzf: live grep in cwd",
       },
       {
+        "<M-t>",
+        function()
+          require("fzf-lua").tabs()
+        end,
+        desc = "fzf: tabs",
+      },
+      {
         "<M-f>",
         function()
           require("fzf-lua").files()
