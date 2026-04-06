@@ -115,3 +115,11 @@ set(
   "<cmd>CustomPipeFileToCmd messages<cr>",
   { desc = "Executes the current file in a term split" }
 )
+set(
+  "c",
+  "<A-;>",
+  function()
+    vim.fn.setcmdline("P " .. vim.fn.getcmdline())
+  end,
+  { desc = "Prefixes the current command line prompt with the pipe command" }
+)

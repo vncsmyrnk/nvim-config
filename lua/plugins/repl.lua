@@ -43,13 +43,6 @@ return {
         end,
         desc = "Repl: send",
       },
-      {
-        "<A-;>",
-        function()
-          require("iron.core").send_line()
-        end,
-        desc = "Repl: send line",
-      },
     },
   },
 }
