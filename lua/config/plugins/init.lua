@@ -6,5 +6,4 @@
 
 require("config.plugins.shell_run")
 require("config.plugins.term_run")
-require("config.plugins.pipe_file_to_cmd")
 require("config.plugins.pipe")
