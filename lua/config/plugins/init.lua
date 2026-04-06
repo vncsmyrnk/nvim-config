@@ -4,6 +4,4 @@
 ---@field range integer The number of items in the command range: 0, 1, or 2
 ---@field args string The args passed to the command
 
-require("config.plugins.shell_run")
-require("config.plugins.term_run")
 require("config.plugins.pipe")
