@@ -160,6 +160,13 @@ return {
         desc = "fzf: change working directory",
       },
       {
+        "<M-/>",
+        function()
+          require("fzf-lua").help_tags()
+        end,
+        desc = "fzf: help tags",
+      },
+      {
         "<leader>F",
         function()
           require("fzf-lua").files({
@@ -233,13 +240,6 @@ return {
           require("fzf-lua").man_pages()
         end,
         desc = "fzf: man pages",
-      },
-      {
-        "<leader>ft",
-        function()
-          require("fzf-lua").help_tags()
-        end,
-        desc = "fzf: help tags",
       },
       {
         "<leader>fk",
