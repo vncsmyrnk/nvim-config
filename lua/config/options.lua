@@ -25,3 +25,5 @@ vim.opt.tabline = "%!v:lua.require('lib.tabline').render()"
 -- Displays tab/space, trailing whitespace
 vim.opt.list = true
 vim.opt.listchars = "tab:→\\ ,trail:~,extends:>,precedes:<,space:·"
+
+require("vim._core.ui2").enable()

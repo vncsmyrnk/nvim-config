@@ -110,9 +110,7 @@ set("n", "<A-t>", "<C-w>t", { desc = "Go to window on the top left" })
 set("n", "<A-b>", "<C-w>b", { desc = "Go to window on the right bottom" })
 set("n", "<A-q>", "<C-w>q", { desc = "Closes current window" })
 
-set("n", "<A-m>", function()
-  require("lib.messages").open({})
-end)
+set("n", "<A-m>", "<cmd>messages<cr>", { desc = "Open messages" })
 
 set(
   "c",
