@@ -29,8 +29,18 @@ set(
 )
 set("n", "<leader>tq", "<cmd>tabclose<cr>", { desc = "Closes current tab" })
 
-set("n", "<A-]>", "<cmd>tabnext +1<cr>", { desc = "Opens the next tab" })
-set("n", "<A-[>", "<cmd>tabnext -1<cr>", { desc = "Opens the previous tab" })
+set(
+  "n",
+  "<A-]>",
+  "<cmd>silent! tabnext +1<cr>",
+  { desc = "Opens the next tab" }
+)
+set(
+  "n",
+  "<A-[>",
+  "<cmd>silent! tabnext -1<cr>",
+  { desc = "Opens the previous tab" }
+)
 
 -- Maps <A-{N}> to open tabs
 for i = 1, 9 do
