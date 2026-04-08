@@ -1,8 +1,6 @@
 local set = vim.keymap.set
 
 set("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "Opens a new tab" })
-set("n", "<leader>t$", "<cmd>tabnext $<cr>", { desc = "Opens the last tab" })
-set("n", "<leader>t0", "<cmd>tabnext 1<cr>", { desc = "Opens the first tab" })
 set(
   "n",
   "<leader>t<tab>",
@@ -42,8 +40,21 @@ set(
   { desc = "Opens the previous tab" }
 )
 
+set(
+  { "n", "t" },
+  "<A-0>",
+  [[<C-\><C-n><cmd>silent! tabnext 1<cr>]],
+  { desc = "Opens first tab" }
+)
+set(
+  { "n", "t" },
+  "<A-9>",
+  [[<C-\><C-n><cmd>silent! tabnext $<cr>]],
+  { desc = "Opens last tab" }
+)
+
 -- Maps <A-{N}> to open tabs
-for i = 1, 9 do
+for i = 1, 8 do
   set("n", string.format("<A-%s>", i), string.format("%sgt", i), {
     noremap = true,
     desc = "Go to tab " .. i,
