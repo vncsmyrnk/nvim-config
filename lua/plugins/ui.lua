@@ -214,7 +214,7 @@ return {
             {
               function()
                 if utils.plugin_loaded("kulala.nvim") then
-                  local selected_env = require("lib.kulala").get_selected_env()
+                  local selected_env = require("kulala").get_selected_env()
                   return string.format("kenv: %s", selected_env)
                 end
                 return ""
