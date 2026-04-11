@@ -123,7 +123,7 @@ return {
         desc = "fzf: open buffers for the cwd",
       },
       {
-        "<M-b>",
+        "<M-u>",
         function()
           require("fzf-lua").buffers()
         end,
