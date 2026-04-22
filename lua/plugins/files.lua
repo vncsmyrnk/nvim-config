@@ -190,7 +190,7 @@ return {
             cwd_header = false,
           })
         end,
-        desc = "fzf: change working directory",
+        desc = "fzf: search documents files",
       },
       {
         "<leader>fA",
