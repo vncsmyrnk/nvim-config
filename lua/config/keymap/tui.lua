@@ -12,3 +12,9 @@ vim.keymap.set(
   utils.on_a_new_tab("gemini"),
   { desc = "TUI: Opens gemini" }
 )
+vim.keymap.set(
+  "n",
+  "<leader>ca",
+  utils.on_a_new_tab("claude"),
+  { desc = "TUI: Opens calude" }
+)
