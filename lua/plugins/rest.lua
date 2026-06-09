@@ -3,6 +3,7 @@ return {
   {
     "mistweaverco/kulala.nvim",
     ft = { "http", "rest" },
+    commit = "6656c9d332735ca6a27725e0fb45a1715c4372d9",
     opts = {
       kulala_keymaps = {
         -- INFO: disabling default ui keymaps breaks the help sction
