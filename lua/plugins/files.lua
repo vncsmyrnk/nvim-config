@@ -67,6 +67,7 @@ return {
       },
       grep = {
         follow = true,
+        rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --pcre2 -e",
       },
       actions = {
         files = {
