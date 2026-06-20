@@ -15,6 +15,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         json = { "jq" },
+        yaml = { "prettier" },
         zsh = { "shfmt" },
         sh = { "shfmt" },
         rust = { "rustfmt" },
