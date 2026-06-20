@@ -11,10 +11,15 @@ return {
         shfmt = {
           prepend_args = { "-i", "2" },
         },
+        jsonc = {
+          command = "prettier",
+          args = { "--parser", "jsonc" },
+        },
       },
       formatters_by_ft = {
         lua = { "stylua" },
         json = { "jq" },
+        jsonc = { "jsonc" },
         yaml = { "prettier" },
         zsh = { "shfmt" },
         sh = { "shfmt" },
