@@ -27,58 +27,5 @@ return {
     },
   },
 
-  {
-    "olimorris/codecompanion.nvim",
-    opts = {
-      adapters = {
-        acp = {
-          gemini_cli = function()
-            return require("codecompanion.adapters").extend("gemini_cli", {
-              defaults = {
-                auth_method = "oauth-personal",
-              },
-            })
-          end,
-        },
-      },
-      strategies = {
-        chat = {
-          adapter = {
-            name = "copilot",
-            model = "claude-sonnet-4",
-          },
-        },
-        inline = {
-          adapter = {
-            name = "copilot",
-            model = "claude-sonnet-4",
-          },
-        },
-        cmd = {
-          adapter = {
-            name = "copilot",
-            model = "claude-sonnet-4",
-          },
-        },
-      },
-      display = {
-        chat = {
-          window = {
-            width = 0.3,
-          },
-        },
-      },
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    keys = {
-      { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion: open actions" },
-      { "<leader>ac", "<cmd>CodeCompanionChat<cr>", desc = "CodeCompanion: open chat" },
-      { "<leader>ai", "<cmd>CodeCompanion<cr>", desc = "CodeCompanion: visual selection" },
-    },
-  },
-
   { "AndreM222/copilot-lualine" },
 }
