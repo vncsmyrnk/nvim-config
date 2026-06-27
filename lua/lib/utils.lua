@@ -9,7 +9,7 @@ local api = vim.api
 --- useful to switch back to the last accesed tab when
 --- the TUI is closed.
 ---@type integer
-TAB_INDEX_BEFORE_TUI = 0
+local tab_index_before_tui = 0
 
 --- executes a function in a new right vsplit
 ---@param callback function
@@ -45,7 +45,7 @@ function M.on_a_new_tab(callback)
   local callback_fn = callback
   if type(callback) == "string" then
     callback_fn = function()
-      TAB_INDEX_BEFORE_TUI = vim.api.nvim_get_current_tabpage()
+      tab_index_before_tui = vim.api.nvim_get_current_tabpage()
       vim.cmd(string.format("$tab term %s", callback))
       vim.cmd("startinsert")
     end
@@ -59,7 +59,7 @@ function M.on_a_new_tab(callback)
       callback = function()
         vim.api.nvim_buf_delete(0, { force = true })
         -- Goes back to previously accessed tab
-        vim.api.nvim_set_current_tabpage(TAB_INDEX_BEFORE_TUI)
+        vim.api.nvim_set_current_tabpage(tab_index_before_tui)
       end,
     })
   end

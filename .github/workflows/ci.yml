@@ -1,0 +1,36 @@
+name: CI Workflow
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v4
+
+      - uses: leafo/gh-actions-lua@v13
+        with:
+          luaVersion: "5.1"
+
+      - uses: lunarmodules/luacheck@v1
+
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: stable
+
+      - run: sudo apt-get update && sudo apt-get install -y stow
+      - run: just config
+
+      - run: |
+          NO_PLUGINS=1 nvim --headless +qa 2> nvim_errors.log
+          if [ -s nvim_errors.log ]; then
+            echo "Startup errors detected:"
+            cat nvim_errors.log
+            exit 1
+          else
+            echo "Neovim config loaded successfully."
+          fi

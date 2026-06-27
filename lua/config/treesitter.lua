@@ -1,7 +1,11 @@
-local ts = require("nvim-treesitter")
+local ok, ts = pcall(require, "nvim-treesitter")
+if not ok then
+  return
+end
 
 -- tracks the parsers which do not match the filetype
-local aliases = { mysql = "sql", gitrebase = "git_rebase", sh = "bash", zsh = "bash" }
+local aliases =
+  { mysql = "sql", gitrebase = "git_rebase", sh = "bash", zsh = "bash" }
 
 -- tracks TS indent exceptions
 local indent_exceptions = { "sh", "bash", "zsh" }
@@ -45,7 +49,8 @@ local on_any_file_type = function()
   end)
 end
 
-local ts_start_group = vim.api.nvim_create_augroup("MyTreesitterStart", { clear = true })
+local ts_start_group =
+  vim.api.nvim_create_augroup("MyTreesitterStart", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
   group = ts_start_group,
