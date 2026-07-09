@@ -20,7 +20,7 @@
   "mini.diff": { "branch": "main", "commit": "be4ca6953040332d77a5a05bb5600152c5c36e7a" },
   "mini.nvim": { "branch": "main", "commit": "1345d191bb3da9c7b0e977f4387c5761f9bff68d" },
   "mini.pairs": { "branch": "main", "commit": "b1fd9df3bb4a41c8f45778a3859ee80ef6b367e3" },
-  "mini.surround": { "branch": "main", "commit": "19b44c1bbe4eecaf191896b8bec657d5fdd549e4" },
+  "mini.surround": { "branch": "main", "commit": "5c2a99e43b959055311a4557875985142b672af0" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
   "nvim-dap": { "branch": "master", "commit": "9e848e09a697ee95302a3ef2dd43fd6eb709e570" },
   "nvim-dap-go": { "branch": "main", "commit": "b4421153ead5d726603b02743ea40cf26a51ed5f" },

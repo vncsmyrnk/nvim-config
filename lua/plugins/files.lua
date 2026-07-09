@@ -170,19 +170,38 @@ return {
       {
         "<M-w>",
         function()
+          local get_input_path = function(selected)
+            if not selected or #selected == 0 then
+              return
+            end
+            local selection = selected[1]
+            local path = selection:match("^(%S+)")
+            if path then
+              local escaped_path = vim.fn.fnameescape(path)
+              return escaped_path
+            end
+          end
+
           require("fzf-lua").fzf_exec("git worktree list", {
             prompt = "Worktrees> ",
             actions = {
               ["default"] = function(selected)
-                if not selected or #selected == 0 then
-                  return
-                end
-
-                local selection = selected[1]
-                local path = selection:match("^(%S+)")
+                local path = get_input_path(selected)
                 if path then
                   local escaped_path = vim.fn.fnameescape(path)
                   vim.cmd("tcd " .. escaped_path)
+                else
+                  vim.notify(
+                    "Could not parse worktree path",
+                    vim.log.levels.ERROR
+                  )
+                end
+              end,
+              ["ctrl-v"] = function(selected)
+                local path = get_input_path(selected)
+                if path then
+                  local escaped_path = vim.fn.fnameescape(path)
+                  vim.cmd("tabnew | tcd " .. escaped_path)
                 else
                   vim.notify(
                     "Could not parse worktree path",
