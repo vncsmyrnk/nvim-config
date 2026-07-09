@@ -21,6 +21,8 @@ vim.opt.equalalways = false
 vim.opt.showmode = false
 vim.opt.foldlevel = 99
 vim.opt.tabline = "%!v:lua.require('lib.tabline').render()"
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 -- Displays tab/space, trailing whitespace
 vim.opt.list = true
