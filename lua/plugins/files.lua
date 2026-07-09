@@ -168,6 +168,34 @@ return {
         desc = "fzf: help tags",
       },
       {
+        "<M-w>",
+        function()
+          require("fzf-lua").fzf_exec("git worktree list", {
+            prompt = "Worktrees> ",
+            actions = {
+              ["default"] = function(selected)
+                if not selected or #selected == 0 then
+                  return
+                end
+
+                local selection = selected[1]
+                local path = selection:match("^(%S+)")
+                if path then
+                  local escaped_path = vim.fn.fnameescape(path)
+                  vim.cmd("tcd " .. escaped_path)
+                else
+                  vim.notify(
+                    "Could not parse worktree path",
+                    vim.log.levels.ERROR
+                  )
+                end
+              end,
+            },
+          })
+        end,
+        desc = "fzf: git worktrees",
+      },
+      {
         "<leader>F",
         function()
           require("fzf-lua").files({
