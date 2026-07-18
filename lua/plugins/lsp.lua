@@ -16,7 +16,13 @@ return {
         ensure_installed = { "lua_ls" },
       })
 
+      vim.lsp.config("elvish", {
+        cmd = { "elvish", "-lsp" },
+        filetypes = { "elvish" },
+      })
+
       vim.lsp.enable("lua_ls")
+      vim.lsp.enable("elvish")
     end,
   },
 
