@@ -47,10 +47,27 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "markdown", "codecompanion" },
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-    keys = {
-      { "<leader>md", "<cmd>RenderMarkdown disable<cr>", desc = "markdown: disable" },
-      { "<leader>me", "<cmd>RenderMarkdown enable<cr>", desc = "markdown: enable" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
     },
+    keys = {
+      {
+        "<leader>md",
+        "<cmd>RenderMarkdown disable<cr>",
+        desc = "markdown: disable",
+      },
+      {
+        "<leader>me",
+        "<cmd>RenderMarkdown enable<cr>",
+        desc = "markdown: enable",
+      },
+    },
+  },
+
+  {
+    "3rd/image.nvim",
+    event = "VeryLazy",
+    opts = {},
   },
 }
