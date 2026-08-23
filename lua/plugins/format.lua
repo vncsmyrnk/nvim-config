@@ -21,6 +21,7 @@ return {
         json = { "jq" },
         jsonc = { "jsonc" },
         yaml = { "prettier" },
+        toml = { "tombi" },
         zsh = { "shfmt" },
         sh = { "shfmt" },
         rust = { "rustfmt" },
