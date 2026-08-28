@@ -11,6 +11,10 @@ return {
         shfmt = {
           prepend_args = { "-i", "2" },
         },
+        shfmt_zsh = {
+          command = "shfmt",
+          args = { "-ln", "zsh", "-i", "2" },
+        },
         jsonc = {
           command = "prettier",
           args = { "--parser", "jsonc" },
@@ -22,7 +26,7 @@ return {
         jsonc = { "jsonc" },
         yaml = { "prettier" },
         toml = { "tombi" },
-        zsh = { "shfmt" },
+        zsh = { "shfmt_zsh" },
         sh = { "shfmt" },
         rust = { "rustfmt" },
         nix = { "nixfmt" },
