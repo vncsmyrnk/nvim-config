@@ -1,7 +1,7 @@
 return {
   -- INFO: https://neovim.getkulala.net/
   {
-    "mistweaverco/kulala.nvim",
+    "dont-be-evil-company/kulala.nvim",
     ft = { "http", "rest" },
     commit = "6656c9d332735ca6a27725e0fb45a1715c4372d9",
     opts = {
