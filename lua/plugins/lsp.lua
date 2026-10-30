@@ -23,6 +23,7 @@ return {
 
       vim.lsp.enable("lua_ls")
       vim.lsp.enable("elvish")
+      vim.lsp.enable("gopls")
     end,
   },
 
