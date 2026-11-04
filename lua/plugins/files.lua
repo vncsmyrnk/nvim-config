@@ -67,7 +67,7 @@ return {
       },
       grep = {
         follow = true,
-        rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --multiline --pcre2 -e",
+        rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --multiline --pcre2 -e", -- luacheck: ignore 631
       },
       actions = {
         files = {
