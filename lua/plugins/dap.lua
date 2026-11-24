@@ -1,8 +1,3 @@
-local must_install = {}
-if vim.fn.executable("go") == 1 then
-  table.insert(must_install, "delve")
-end
-
 return {
   {
     "rcarriga/nvim-dap-ui",
@@ -14,7 +9,7 @@ return {
     config = function()
       require("mason").setup({})
       require("mason-nvim-dap").setup({
-        ensure_installed = must_install,
+        ensure_installed = {},
         handlers = {
           function(config)
             require("mason-nvim-dap").default_setup(config)
@@ -79,7 +74,11 @@ return {
           name = "Launch",
           request = "launch",
           program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+            return vim.fn.input(
+              "Path to executable: ",
+              vim.fn.getcwd() .. "/target/debug/",
+              "file"
+            )
           end,
           cwd = "${workspaceFolder}",
           stopOnEntry = false,
@@ -100,7 +99,11 @@ return {
           type = "codelldb",
           request = "launch",
           program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin/", "file")
+            return vim.fn.input(
+              "Path to executable: ",
+              vim.fn.getcwd() .. "/zig-out/bin/",
+              "file"
+            )
           end,
           args = function()
             local input = vim.fn.input("Args: ")
