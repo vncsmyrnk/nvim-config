@@ -40,7 +40,7 @@ local on_any_file_type = function()
   end
 
   local available_parsers = ts.get_available()
-  if available_parsers[ft] == nil then
+  if not vim.tbl_contains(available_parsers, ft) then
     return
   end
 
